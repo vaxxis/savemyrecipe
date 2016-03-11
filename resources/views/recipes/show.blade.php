@@ -14,7 +14,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $recipe->id }}</td> <td> {{ $recipe->name }} </td><td> {{ $recipe->description }} </td>
+                    <td>{{ $recipe->id }}</td>
+                    <td> {{ $recipe->name }}</td>
+                    <td> {{ $recipe->description }}</td>
                 </tr>
             </tbody>    
         </table>

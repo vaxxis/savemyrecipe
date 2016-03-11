@@ -4,19 +4,39 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel CRUD App</title>
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet"> -->
+	<title>SaveMyRecipe</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/purple.css" rel="stylesheet">
 	<style>
 		body {
 			padding-top: 100px;
+			font-size: 16px;
+		}
+		.form-control {
+			font-size: 16px;
+			height: 40px;
+		}
+		.checkbox .icheckbox_square-purple {
+			margin-right: 10px;
+			margin-left: -10px;
+		}
+
+		@media (min-width: 768px) {
+			.navbar-nav>li>a,
+			.navbar-brand,
+			.navbar-text {
+				margin-top: 0;
+				margin-bottom: 0;
+			    padding-top: 25px;
+			    padding-bottom: 25px;
+			}
 		}
 	</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="container">
-	        <!-- Brand and toggle get grouped for better mobile display -->
+
 	        <div class="navbar-header">
 	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
 	                <span class="sr-only">Toggle navigation</span>
@@ -67,5 +87,16 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+	<script>
+	// TODO: Move this to a self main.js file
+	$(document).ready(function(){
+		$('input').iCheck({
+			checkboxClass: 'icheckbox_square-purple',
+			radioClass: 'iradio_square-purple'
+		});
+	});
+	</script>
 </body>
 </html>

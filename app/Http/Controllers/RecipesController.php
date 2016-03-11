@@ -33,7 +33,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::paginate(15);
+        $recipes = Recipe::paginate(10);
 
         return view('recipes.index', compact('recipes'));
     }
@@ -60,12 +60,11 @@ class RecipesController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
 
-        $data = $request->all();
-        $data['user_id'] = \Auth::user()->id;
-        $ingredients = $data['ingredients'];
-        $recipe = Recipe::create($data);
-
-        $recipe->ingredients()->attach($ingredients);
+        $recipe = Auth::user()->recipes()->create($request->all());
+        
+        // sync recipe ingredients
+        $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
+        $recipe->ingredients()->sync($ingredients);
 
         Session::flash('flash_message', 'Recipe added!');
 
@@ -95,7 +94,7 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        $recipe = Recipe::findOrFail($id);
+        $recipe = Recipe::with('ingredients')->findOrFail($id);
         $ingredientTypes = IngredientType::with('ingredients')->get();
 
         return view('recipes.edit', compact('recipe', 'ingredientTypes'));
@@ -113,8 +112,8 @@ class RecipesController extends Controller
         
         $recipe = Recipe::findOrFail($id);
         
-        $ingredients = $request->all()['ingredients'];
-        $recipe->ingredients()->attach($ingredients);
+        $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
+        $recipe->ingredients()->sync($ingredients);
 
         $recipe->update($request->all());
 

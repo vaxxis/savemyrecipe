@@ -12,17 +12,17 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Ingredients</th>
-                    <th>Owner</th>
-                    <th>Actions</th>
+                    <th width="20%">Name</th>
+                    <th width="25%">Description</th>
+                    <th width="25%">Ingredients</th>
+                    <th width="15%">Owner</th>
+                    <th width="15%">Actions</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($recipes as $item)
                 <tr>
-                    <td><a href="{{ url('recipes', $item->id) }}">{{ $item->name }}</a></td>
+                    <td><a href="{{ url('recipes', $item->id) }}"><big>{{ $item->name }}</big></a></td>
                     <td>{{ $item->description }}</td>
                     
                     <td>
@@ -33,7 +33,7 @@
 
                     <td> {{ $item->user->name }} </td>
                     <td>
-                        <a class="btn btn-info btn-xs" href="{{ url('recipes/' . $item->id . '/edit') }}">
+                        <a class="btn btn-info btn-sm" href="{{ url('recipes/' . $item->id . '/edit') }}">
                             Edit
                         </a> 
                         {!! Form::open([
@@ -41,7 +41,7 @@
                             'url' => ['recipes', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
