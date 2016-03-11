@@ -1,7 +1,7 @@
 {!! BootForm::open(['model' => $recipe, 'store' => 'recipes.store', 'update' => 'recipes.update']); !!}
     
     {!! BootForm::text('name') !!}
-    {!! BootForm::textarea('description') !!}
+    {!! BootForm::textarea('description', 'Description', null, ['class' => 'wysiwyg']) !!}
     
     <h2>Ingredients</h2>
     <p class="lead">Select the needed ingredients to complete this recipe...</p>

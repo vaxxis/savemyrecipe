@@ -7,6 +7,8 @@
 	<title>SaveMyRecipe</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/purple.css" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	<style>
 		body {
 			padding-top: 100px;
@@ -89,12 +91,30 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.min.js"></script>
+
 	<script>
 	// TODO: Move this to a self main.js file
 	$(document).ready(function(){
 		$('input').iCheck({
 			checkboxClass: 'icheckbox_square-purple',
 			radioClass: 'iradio_square-purple'
+		});
+
+		// enable wysiwyg editor
+		$('.wysiwyg').summernote({
+			placeholder: 'Write here...',
+			dialogsFade: true,
+			disableDragAndDrop: true,
+			toolbar: [
+				// [groupName, [list of button]]
+				['style', ['bold', 'italic', 'underline', 'strikethrough']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['misc', ['clear']],
+				['misc2', ['undo', 'redo']],
+				['misc3', ['fullscreen', 'codeview']],
+				['misc4', ['help']]
+			]
 		});
 	});
 	</script>
