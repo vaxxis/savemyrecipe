@@ -14,8 +14,14 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function(Blueprint $table) {
             $table->increments('id');
+            
             $table->string('name');
+            
             $table->text('description');
+            $table->text('description_raw');
+
+            $table->boolean('is_private');
+            $table->boolean('is_draft');
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

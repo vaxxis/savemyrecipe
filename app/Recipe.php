@@ -19,7 +19,7 @@ class Recipe extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'is_private', 'is_draft', 'user_id'];
 
     /**
      * The ingredients that belong to the recipe.
