@@ -6,12 +6,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Recipe;
-use App\Ingredient;
 use App\IngredientType;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
+use Auth;
 
 class RecipesController extends Controller
 {
@@ -54,12 +54,14 @@ class RecipesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
 
+        $this->validate($request, ['name' => 'required']);
+        
         $recipe = Auth::user()->recipes()->create($request->all());
         
         // sync recipe ingredients
@@ -103,8 +105,9 @@ class RecipesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
+     * @param Request $request
      * @return Response
      */
     public function update($id, Request $request)

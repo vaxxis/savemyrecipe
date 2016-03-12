@@ -23,7 +23,7 @@
             @foreach($recipes as $item)
                 <tr>
                     <td><a href="{{ url('recipes', $item->id) }}"><big>{{ $item->name }}</big></a></td>
-                    <td>{{ $item->description }}</td>
+                    <td>{!! $item->description !!}</td>
                     
                     <td>
                         @foreach ($item->ingredients as $ingredient)

@@ -25,7 +25,7 @@
                         </div>
                         <div id="collapse{{ $r->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ $r->id }}">
                               <div class="panel-body">
-                                {{ $r->description }}
+                                {!! $r->description !!}
                                 
                                 <h4>Ingredients</h4>
                                 @foreach ($r->ingredients as $i)
