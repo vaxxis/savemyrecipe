@@ -2,30 +2,33 @@
 
 @section('content')
 
-<div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            
-            <div class="panel panel-default">
-                <div class="panel-heading"><h3>Login</h3></div>
-                <div class="panel-body">
-                    <form class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
 
-                        {!! BootForm::text('email', 'Email Address') !!}
-                        {!! BootForm::password('password') !!}
-                        {!! BootForm::checkbox('remember', 'Remember Me') !!}
-                        {!! BootForm::submit('Login', ['class' => 'btn btn-lg btn-primary']) !!}
+            <h2>Login</h2>
+            <hr>
 
-                        <div>
-                            <a class="text-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                        </div>
-                    </form>
+            {!! Form::open(['method' => 'POST', 'url' => 'login', 'class' => 'form-vertical']) !!}
+
+                {!! csrf_field() !!}
+
+                {!! BootForm::text('email', 'Email Address') !!}
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <small class="pull-right"><a class="text-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a></small>
+
+                    {!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
+                    <small class="text-danger">{{ $errors->first('password') }}</small>
                 </div>
-            </div>
 
+                {!! BootForm::checkbox('remember', 'Remember Me') !!}
+
+                <br>
+                {!! BootForm::submit('Login', ['class' => 'btn btn-lg btn-primary']) !!}
+
+            {!! Form::close() !!}
         </div>
     </div>
-</div>
 
 @endsection

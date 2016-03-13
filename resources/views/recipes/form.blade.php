@@ -1,8 +1,15 @@
 {!! BootForm::open(['model' => $recipe, 'store' => 'recipes.store', 'update' => 'recipes.update']); !!}
-    
+
     {!! BootForm::text('name') !!}
+    {!! BootForm::checkbox('is_private', 'Private (only you will see) &nbsp;<i class="icon ion-locked"></i>') !!}
+
     {!! BootForm::textarea('description', 'Description', null, ['class' => 'wysiwyg']) !!}
-    
+
+    {!! BootForm::select('level', 'Level', $recipe->levels(), null, ['placeholder' => 'Select Difficulty']) !!}
+
+    {!! BootForm::select('course', 'Course', $recipe->courses(), null, ['placeholder' => 'Select Course']) !!}
+
+
     <h2>Ingredients</h2>
     <p class="lead">Select the needed ingredients to complete this recipe...</p>
 
@@ -24,6 +31,8 @@
     </div>
 
     <hr>
-    {!! BootForm::submit('Save Recipe', ['class' => 'btn btn-primary btn-lg']) !!}
+    <div class="form-group">
+        {!! Form::submit('Save Recipe', ['class' => 'btn btn-primary btn-lg']) !!}
+    </div>
 
 {!! BootForm::close() !!}

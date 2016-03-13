@@ -12,10 +12,46 @@
 */
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
+
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
+
+});
+
+$factory->define(App\IngredientType::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->word,
+    ];
+
+});
+
+$factory->define(App\Ingredient::class, function (Faker\Generator $faker) {
+
+    $ingredient_type_id = App\IngredientType::lists('id')->random();
+    return [
+        'name' => $faker->word,
+        'ingredient_type_id' => $ingredient_type_id,
+    ];
+
+});
+
+
+$factory->define(App\Recipe::class, function (Faker\Generator $faker) {
+
+    $user_id = App\User::lists('id')->random();
+
+    return [
+        'name' => rtrim($faker->sentence(3), "."),
+        'description' => $faker->paragraph,
+        'level' => array_rand(App\Recipe::levels()),
+        'course' => array_rand(App\Recipe::courses()),
+        'is_private' => $faker->boolean(10), // change of TRUE 10%
+        'user_id' => $user_id,
+    ];
+
 });

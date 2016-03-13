@@ -61,11 +61,11 @@ class RecipesController extends Controller
     {
 
         $this->validate($request, ['name' => 'required']);
-        
+
         $recipe = Auth::user()->recipes()->create($request->all());
-        
+
         // sync recipe ingredients
-        $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
+        $ingredients = $request->input('ingredients') ?: [];
         $recipe->ingredients()->sync($ingredients);
 
         Session::flash('flash_message', 'Recipe added!');
@@ -112,9 +112,9 @@ class RecipesController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+
         $recipe = Recipe::findOrFail($id);
-        
+
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
         $recipe->ingredients()->sync($ingredients);
 

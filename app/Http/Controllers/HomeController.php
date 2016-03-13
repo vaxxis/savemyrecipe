@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Recipe;
 
+
 class HomeController extends Controller
 {
     /**
@@ -16,7 +17,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('ingredients.ingredientType')->get();
+        $recipes = Recipe::getPublished();
         return view('home', compact('recipes'));
+    }
+
+    public function filterByCourse($course)
+    {
+        $recipes = Recipe::getPublishedByCourse($course);
+        return view('home', compact('recipes', 'course'));
+    }
+
+    public function showRecipe($slug)
+    {
+        $recipe = Recipe::findBySlugOrIdOrFail($slug);
+        $recipe->load('ingredients', 'user');
+        
+        return $recipe;
     }
 }

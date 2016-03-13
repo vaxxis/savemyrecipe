@@ -25,12 +25,14 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-
+    // Public routes
     Route::get('/', 'HomeController@index');
+    Route::get('/r/{slug}', 'HomeController@showRecipe');
+    Route::get('/course/{course}', 'HomeController@filterByCourse');
 
     Route::auth(); // authentication routes
 	Route::resource('recipes', 'RecipesController');
     Route::resource('ingredients', 'IngredientsController');
     Route::resource('ingredienttypes', 'IngredientTypesController');
-    
+
 });

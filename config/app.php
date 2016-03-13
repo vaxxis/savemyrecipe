@@ -159,6 +159,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+
 
     ],
 

@@ -13,17 +13,29 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        
+
         User::create(array( // demo
         	'name' => 'Vasile Botoroga',
         	'email' => 'demo@example.com',
         	'password' => bcrypt('demo'),
         ));
 
-        User::create(array( // demo1
+        User::create(array( // user1
         	'name' => 'Mario Rossi',
-        	'email' => 'demo1@example.com',
-        	'password' => bcrypt('demo1'),
+        	'email' => 'user1@example.com',
+        	'password' => bcrypt('user1'),
+        ));
+
+        User::create(array( // user2
+        	'name' => 'Mario Bianchi',
+        	'email' => 'user2@example.com',
+        	'password' => bcrypt('user2'),
+        ));
+
+        User::create(array( // user3
+        	'name' => 'Gianni Rotonda',
+        	'email' => 'user3@example.com',
+        	'password' => bcrypt('user3'),
         ));
     }
 }

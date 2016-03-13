@@ -16,7 +16,7 @@ class IngredientsTableSeeder extends Seeder
     {
         DB::table('ingredients')->delete();
         DB::table('ingredient_types')->delete();
-    	
+
         $condimenti = IngredientType::create(['name' => 'Condimenti']);
         $condimenti->ingredients()->save(new Ingredient(['name' => 'Sale']));
         $condimenti->ingredients()->save(new Ingredient(['name' => 'Pepe']));
