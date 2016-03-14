@@ -1,9 +1,9 @@
 @foreach ($recipes as $r)
     <div class="recipe row">
-        <div class="col-sm-2">
+        <div class="col-xs-4 col-sm-2">
             <img class="img-rounded"  src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=110&h=110&txttrack=0" alt="" />
         </div>
-        <div class="col-sm-8">
+        <div class="col-xs-8 col-sm-7">
 
             <h3>
                 @if ($r->is_private)
@@ -16,18 +16,13 @@
                 <span class="text-muted">Level:</span> <span class="text-success">{{ App\Recipe::levels()[$r->level]  }}</span>
                 <span class="text-muted">Course: <a href="{{ url('course/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
             </p>
-
-            <div class="text-muted">
-                <small>Published <time>{{ $r->created_at->diffForHumans() }}</time> by {{ $r->user->name }}</small>
-            </div>
         </div>
 
-        <div class="col-sm-2">
-            @if (Auth::user())
-                <br>
-                <a class="btn btn-default btn-sm btn-block" href="{{ url('recipes/'. $r->id .'/edit') }}">Edit</a>
-                <a class="btn btn-default btn-sm btn-block" href="{{ url('recipes/'. $r->id .'/delete') }}">Delete</a>
-            @endif
+        <div class="col-sm-3">
+            <div class="text-muted mt20">
+                <small class="opacity7">Published <time>{{ $r->created_at->diffForHumans() }}</time></small>
+                <div>by <a href="{{ url('/@'. ($r->user->slug ?: $r->user->id)) }}">{{ $r->user->name }}</a></div>
+            </div>
         </div>
     </div>
     <hr>

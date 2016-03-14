@@ -29,11 +29,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'PagesController@index');
     Route::get('/r/{slug}', 'PagesController@showRecipe');
     Route::get('/course/{course}', 'PagesController@filterByCourse');
+    Route::get('@{slugOrId}', 'PagesController@showUser');
 
 
 
     // AUTHENTICATED ROUTES
-    
+
     Route::auth();
 
     Route::get('users/{id}/edit', 'UsersController@edit');

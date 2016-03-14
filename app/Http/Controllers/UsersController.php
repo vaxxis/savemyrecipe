@@ -62,11 +62,12 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
 
         $validate['name'] = 'required|max:255';
+        $validate['slug'] = 'alpha_num|max:255';
         $newData['name'] = $request->input('name');
 
-        // don't update user password if 
+        // don't update user password if
         // he left the field blank
-        if ($pass = $request->input('password')) { 
+        if ($pass = $request->input('password')) {
             $validate['password'] = 'required|min:6|confirmed';
             $newData['password'] = bcrypt($pass);
         }
@@ -77,8 +78,10 @@ class UsersController extends Controller
             $newData['email'] = $request->input('email');
         }
 
+
         $this->validate($request, $validate); // validate
 
+        $newData['slug'] = $request->input('slug');
         $user->update($newData);
 
         Session::flash('flash_message', 'User has been updated!');

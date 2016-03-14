@@ -95,21 +95,56 @@
 			font-weight: 400;
 		}
 
-		.margin0 {
-			margin: 0;
+		.jumbotron {
+			margin-top: -30px;
 		}
-
 		.jumbotron p {
 			font-weight: 300;
 		}
-		
+
 		/* utility */
-		.thin { font-weight: 100; }
-		.light { font-weight: 300; }
-		.normal { font-weight: 400; }
-		.semibold { font-weight: 600; }
-		.bold { font-weight: 700; }
-		.ultrabold { font-weight: 900; }
+		.thin 		{ font-weight: 100; }
+		.light 		{ font-weight: 300; }
+		.normal 	{ font-weight: 400; }
+		.semibold 	{ font-weight: 600; }
+		.bold 		{ font-weight: 700; }
+		.ultrabold 	{ font-weight: 900; }
+
+		.m0 { margin: 0; }
+		.ml10 { margin-left:10px; }
+		.ml20 { margin-left:20px; }
+		.ml30 { margin-left:30px; }
+		.ml40 { margin-left:40px; }
+		.ml50 { margin-left:50px; }
+
+		.mr10 { margin-right:10px; }
+		.mr20 { margin-right:20px; }
+		.mr30 { margin-right:30px; }
+		.mr40 { margin-right:40px; }
+		.mr50 { margin-right:50px; }
+
+		.mt10 { margin-top:10px; }
+		.mt20 { margin-top:20px; }
+		.mt30 { margin-top:30px; }
+		.mt40 { margin-top:40px; }
+		.mt50 { margin-top:50px; }
+
+		.mb10 { margin-bottom:10px; }
+		.mb20 { margin-bottom:20px; }
+		.mb30 { margin-bottom:30px; }
+		.mb40 { margin-bottom:40px; }
+		.mb50 { margin-bottom:50px; }
+
+		.opacity1  { opacity:0.1; }
+		.opacity2  { opacity:0.2; }
+		.opacity3  { opacity:0.3; }
+		.opacity4  { opacity:0.4; }
+		.opacity5  { opacity:0.5; }
+		.opacity6  { opacity:0.6; }
+		.opacity7  { opacity:0.7; }
+		.opacity8  { opacity:0.8; }
+		.opacity9  { opacity:0.9; }
+		.opacity10 { opacity:1.00; }
 
 		/* animate on load */
 		.page-content {
@@ -137,7 +172,7 @@
 			    padding-bottom: 25px;
 			}
 			.jumbotron {
-			    padding-top: 80px;
+			    padding-top: 100px;
 			    padding-bottom: 80px;
 			    margin-top: -30px;
 			}
@@ -185,11 +220,11 @@
 
 						<li>
 							<a href="{{ url('users/'.Auth::id().'/edit') }}">
-								<i class="icon ion-person"></i> 
+								<i class="icon ion-person"></i>
 								{{ Auth::user()->name }}
 							</a>
 						</li>
-						
+
 
 						<li><a href="{{ url('/logout') }}">Logout <i class="icon ion-log-out"></i></a></li>
 					@endif

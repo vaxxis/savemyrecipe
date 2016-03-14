@@ -4,7 +4,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="clearfix">
-            <h2 class="pull-left margin0">
+            <h2 class="pull-left m0">
                 @if ($recipe->is_private)
                     <i class="icon ion-locked"></i>
                 @endif
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <h3 class="margin0">Ingredients</h3><br>
+            <h3 class="m0">Ingredients</h3><br>
             <ul class="list-group">
                 @foreach ($recipe->ingredients as $ingredient)
                     <li class="list-group-item">{{ $ingredient }}</li>

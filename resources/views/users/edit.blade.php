@@ -14,13 +14,14 @@
             </div>
 
             {!! BootForm::open(['model' => $user, 'store' => null, 'update' => 'users.update']); !!}
-                
+
                 {!! BootForm::text('name', 'Full Name') !!}
+                {!! BootForm::text('slug', 'Nickname', null, ['placeholder' => 'eg. mariorossi']) !!}
                 {!! BootForm::text('email', 'Email Address') !!}
                 {!! BootForm::password('password', 'Password') !!}
                 {!! BootForm::password('password_confirmation', 'Confirm Password') !!}<br>
                 {!! BootForm::submit('Save Changes', ['class' => 'btn btn-primary btn-lg']) !!}
-            
+
             {!! BootForm::close() !!}
         </div>
     </div>

@@ -3,16 +3,32 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
 class User extends Authenticatable
 {
+    use SluggableTrait;
+
+    /**
+     * Sluggable configuration
+     *
+     * @var array
+     */
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+        'separator'  => '',
+        'on_update'  => true,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'slug', 'email', 'password',
     ];
 
     /**
