@@ -44,6 +44,7 @@ $factory->define(App\Ingredient::class, function (Faker\Generator $faker) {
 $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
 
     $user_id = App\User::lists('id')->random();
+    $date = $faker->dateTimeThisMonth;
 
     return [
         'name' => rtrim($faker->sentence(3), "."),
@@ -52,6 +53,8 @@ $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
         'course' => array_rand(App\Recipe::courses()),
         'is_private' => $faker->boolean(10), // change of TRUE 10%
         'user_id' => $user_id,
+        'created_at' => $date,
+        'updated_at' => $date,
     ];
 
 });
