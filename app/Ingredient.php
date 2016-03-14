@@ -34,4 +34,8 @@ class Ingredient extends Model
         return $this->belongsTo(IngredientType::class);
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

@@ -28,4 +28,9 @@ class IngredientType extends Model
     {
         return $this->hasMany(Ingredient::class);
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

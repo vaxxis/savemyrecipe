@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $recipe = Recipe::findBySlugOrIdOrFail($slug);
         $recipe->load('ingredients', 'user');
-        
-        return $recipe;
+
+        return view('recipes.show', compact('recipe'));
     }
 }

@@ -31,7 +31,9 @@ class IngredientsController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::paginate(20);
+        $ingredients = Ingredient::with('ingredienttype')
+                                 ->orderBy('name', 'asc')
+                                 ->paginate(10);
 
         return view('ingredients.index', compact('ingredients'));
     }
@@ -74,7 +76,7 @@ class IngredientsController extends Controller
     {
         $ingredient = Ingredient::findOrFail($id);
 
-        return view('ingredients.show', compact('ingredient'));
+        return $ingredient;
     }
 
     /**

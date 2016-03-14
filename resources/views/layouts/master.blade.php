@@ -7,16 +7,28 @@
 
 	<title>SaveMyRecipe</title>
 
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/purple.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
 	<style>
-		body {
-			padding-top: 100px;
-			font-size: 16px;
+		html {
+		    position: relative;
+		    min-height: 100%;
 		}
+		body {
+			padding-top: 80px;
+			font-size: 16px;
+			font-family: 'Lato';
+			margin-bottom: 100px; /* for stiky footer */
+		}
+		.page-content {
+			padding-top: 30px;
+			padding-bottom: 30px;
+		}
+
 		.form-control {
 			font-size: 16px;
 			height: 40px;
@@ -41,6 +53,72 @@
 		    margin-left: 0;
 		}
 
+		.page-title > .icon,
+		.modal-title > .icon {
+			color: #ddd;
+		}
+
+		.footer {
+			position: absolute;
+		    bottom: 0;
+		    width: 100%;
+			padding: 40px 0;
+		    height: 100px;
+		    background-color: #f5f5f5;
+		}
+		.footer a {
+			color: black;
+		}
+
+		.modal-header {
+			padding: 25px;
+		}
+		.modal-header .close {
+			padding: 2px;
+			font-size: 200%;
+		}
+		.modal-body {
+			padding: 30px!important;
+		}
+
+		.ingredient {
+			margin: 0;
+			padding: 10px;
+			font-size: 18px;
+		}
+
+		.navbar-nav > li .icon {
+		    opacity: 0.7;
+		}
+
+		.lead {
+			font-weight: 400;
+		}
+
+		.margin0 {
+			margin: 0;
+		}
+
+		.jumbotron p {
+			font-weight: 300;
+		}
+
+		/* animate on load */
+		.page-content {
+			animation: 0.35s fade-up-enter;
+		}
+
+		@keyframes fade-up-enter {
+		  0% {
+		    opacity: 0;
+		    transform: translateY(20px)
+		  }
+		  100% {
+		    opacity: 1;
+		    transform: translateY(0)
+		  }
+		}
+
 		@media (min-width: 768px) {
 			.navbar-nav>li>a,
 			.navbar-brand,
@@ -61,6 +139,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="container">
@@ -83,9 +162,8 @@
 				@if (Auth::user())
 		            <!-- left side of navbar -->
 		            <ul class="nav navbar-nav">
-		                <li><a href="{{ url('/recipes') }}"><i class="icon ion-clipboard"></i> Recipes</a></li>
+		                <li><a href="{{ url('/recipes') }}"><span class="icon ion-clipboard"></span> CookBook</a></li>
 		                <li><a href="{{ url('/ingredients') }}"><span class="icon ion-ios-nutrition"></span> Ingredients</a></li>
-		                <li><a href="{{ url('/ingredienttypes') }}"><span class="icon ion-ios-nutrition-outline"></span> IngredientTypes</a></li>
 		            </ul>
 
 				@endif
@@ -96,7 +174,7 @@
 						<li><a href="{{ url('/login') }}">Login</a></li>
 						<li><a href="{{ url('/register') }}">Register</a></li>
 					@else
-						<li class="navbar-text"><i class="icon ion-person"></i> {{ Auth::user()->name }}</li>
+						<li class="navbar-text"><span class="icon ion-person"></span> {{ Auth::user()->name }}</li>
 						<li><a href="{{ url('/logout') }}">Logout <i class="icon ion-log-out"></i></a></li>
 					@endif
 				</ul>
@@ -105,20 +183,29 @@
 	    </div><!-- /.container-fluid -->
 	</nav>
 
+
 	@yield('content.before')
 
-	<div class="container">
+	<div class="page-content container">
+
+		{{-- print FLASH MESSAGES --}}
+		@if (Session::get('flash_message'))
+			<div class="alert alert-success">
+				{{ Session::get('flash_message') }}
+			</div>
+		@endif
+
 		@yield('content')
 	</div>
 
 	@yield('content.after')
 
-	<hr/>
 
-	<div class="container">
-	    &copy; {{ date('Y') }}. Created by <a href="http://vassi.it">Vasile Botoroga</a>
-	    <br/>
-	</div>
+	<footer class="footer">
+		<div class="container text-muted">
+			&copy; {{ date('Y') }}. Created by <a href="http://vassi.it">Vasile Botoroga</a>
+		</div>
+	</footer>
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
@@ -152,6 +239,11 @@
 				['misc4', ['help']]
 			]
 		});
+
+		// enable bootstrap tooltips
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
 	});
 	</script>
 </body>

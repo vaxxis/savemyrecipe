@@ -1,25 +1,42 @@
 @extends('layouts.master')
 
+@section('content.before')
+<div class="jumbotron">
+    <div class="container">
+        <div class="clearfix">
+            <h2 class="pull-left margin0">{{ $recipe->name }}</h2>
+            @if (Auth::user())
+                <div class="pull-right">
+                    <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">Delete</a>
+                </div>
+            @endif
+        </div>
+
+        <div class="lead text-muted">
+            Level: <span class="text-success">{{ App\Recipe::levels()[$recipe->level] }}</span>
+            Course: <span class="text-info">{{ App\Recipe::courses()[$recipe->course] }}</span>
+        </div>
+    </div>
+</div>
+@endsection
+
 @section('content')
 
-    <h1>Recipe</h1>
-    <hr>
-    
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>ID.</th> <th>Title</th><th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ $recipe->id }}</td>
-                    <td> {{ $recipe->name }}</td>
-                    <td> {{ $recipe->description }}</td>
-                </tr>
-            </tbody>    
-        </table>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="lead">
+                {!! $recipe->description !!}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="margin0">Ingredients</h3><br>
+            <ul class="list-group">
+                @foreach ($recipe->ingredients as $ingredient)
+                    <li class="list-group-item">{{ $ingredient }}</li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 
 @endsection

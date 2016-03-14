@@ -20,47 +20,29 @@
 
 @section('content')
 
-    <h1 class="">Recipes <small>Recipes around the world</small></h1><hr>
+    <h1 class="page-title">
+        <span class="icon ion-pizza text-muted"></span>
+        Recipes <small>Recipes around the world</small>
+    </h1><hr>
 
-    <a class="btn btn-default {{ ( ! isset($course)) ? 'active' : '' }}" href="{{ url('/') }}">All</a>
-    @foreach (App\Recipe::courses() as $slug => $c)
-        <a class="btn btn-default {{ (isset($course) && $slug == $course) ? 'active' : '' }}" href="{{ url('course/' . $slug) }}">{{ $c }}</a>
-    @endforeach
-    &nbsp;&nbsp;<small class="text-muted"><i><b>{{ $recipes->total() }}</b> recipes found</i></small>
+    @include('partials.courses-buttons', [ // recipes course buttons
+        'course' => isset($course) ? $course : null
+    ])
 
     <hr>
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
 
-            @foreach ($recipes as $r)
-                <div class="recipe row">
-                    <div class="col-sm-3">
-                        <img class="img-rounded"  src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=110&h=110&txttrack=0" alt="" />
-                    </div>
-                    <div class="col-sm-9">
-                        <a href="{{ url('r/' . $r->slug) }}"><h3>{{ $r->name }}</h3></a>
 
-                        <p>
-                            <span class="text-muted">Level:</span> <span class="text-success">{{ App\Recipe::levels()[$r->level]  }}</span>
-                            <span class="text-muted">Course: <a href="{{ url('course/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
-                        </p>
+            @include('partials.recipes-list', [ // recipes page list
+                'recipes' => $recipes,
+                'course' => isset($course) ? $course : null,
+            ])
 
-                        <div class="text-muted">
-                            <small>Published <time>{{ $r->created_at->diffForHumans() }}</time> by {{ $r->user->name }}</small>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            @endforeach
-        </div>
-
-        <div class="col-sm-4">
 
         </div>
     </div>
-
-    <div class="paginator"> {!! $recipes->render() !!} </div>
 
     <br>
     <br>

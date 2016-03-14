@@ -58,7 +58,7 @@ class IngredientTypesController extends Controller
 
         Session::flash('flash_message', 'IngredientType added!');
 
-        return redirect('ingredienttypes');
+        return redirect('ingredients');
     }
 
     /**
@@ -121,7 +121,7 @@ class IngredientTypesController extends Controller
 
         Session::flash('flash_message', 'IngredientType deleted!');
 
-        return redirect('ingredienttypes');
+        return redirect('ingredients');
     }
 
 }

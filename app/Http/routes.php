@@ -31,8 +31,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/course/{course}', 'HomeController@filterByCourse');
 
     Route::auth(); // authentication routes
+
 	Route::resource('recipes', 'RecipesController');
+	Route::get('recipes/{id}/delete', 'RecipesController@destroy');
+
     Route::resource('ingredients', 'IngredientsController');
+    Route::get('ingredients/{id}/delete', 'IngredientsController@destroy');
+
     Route::resource('ingredienttypes', 'IngredientTypesController');
+    Route::get('ingredienttypes/{id}/delete', 'IngredientTypesController@destroy');
 
 });
