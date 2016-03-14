@@ -26,9 +26,9 @@
 Route::group(['middleware' => ['web']], function () {
 
     // Public routes
-    Route::get('/', 'HomeController@index');
-    Route::get('/r/{slug}', 'HomeController@showRecipe');
-    Route::get('/course/{course}', 'HomeController@filterByCourse');
+    Route::get('/', 'PagesController@index');
+    Route::get('/r/{slug}', 'PagesController@showRecipe');
+    Route::get('/course/{course}', 'PagesController@filterByCourse');
 
     Route::auth(); // authentication routes
 

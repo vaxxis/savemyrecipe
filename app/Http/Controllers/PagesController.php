@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 
 
-class HomeController extends Controller
+class PagesController extends Controller
 {
     /**
      * Show the application dashboard.
