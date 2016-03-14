@@ -28,7 +28,6 @@ class Recipe extends Model implements SluggableInterface
         'course',           // category es. Apetizers or Desserts
         'level',            // difficulty level
         'is_private',
-        'is_draft',
         'user_id'
     ];
 

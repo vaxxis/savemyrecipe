@@ -4,17 +4,29 @@ A simple Laravel 5 Exercize.
 
 ## Installation
 
-1. composer install
-2. cp .env.example .env
-3. php artisan key:generate
-4. configure the database credentials in the .env file
-5. php artisan migrate
-6. php artisan db:seed
+Run the following commands in your terminal (from project root):
 
-Basic users inserted trought seed:
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+    chmod -R 777 storage/*
+    touch database/database.sqlite
+    php artisan migrate
+    php artisan db:seed
 
-login: demo@example.com
-pass:  demo
+**or just lunch the following command:**
+    
+    composer install && cp .env.example .env && php artisan key:generate && chmod -R 777 storage/* && touch database/database.sqlite && php artisan migrate && php artisan db:seed
 
-login: demo1@example.com
-pass:  demo1
+_For practicality i used sqlite for develoment. If you want you can 
+configure other databases and credentials in the `.env` file._
+
+**Basic users inserted trought seeds:**
+
+    login: user@example.com
+    pass:  user
+
+    login: user1@example.com 
+    pass:  user1
+
+_You can view other demo users in_ `database/seeds/UsersTableSeeder.php`

@@ -17,7 +17,7 @@ class RecipesTableSeeder extends Seeder
 
         $ingredients = App\Ingredient::lists('id');
 
-        factory(Recipe::class, 250)->create()->each(function($recipe) use($ingredients) {
+        factory(Recipe::class, 100)->create()->each(function($recipe) use($ingredients) {
 
             // get a random number of ingredients
             $tempIngredients = $ingredients->random(rand(2, $ingredients->count() / 2));
