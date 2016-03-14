@@ -102,6 +102,14 @@
 		.jumbotron p {
 			font-weight: 300;
 		}
+		
+		/* utility */
+		.thin { font-weight: 100; }
+		.light { font-weight: 300; }
+		.normal { font-weight: 400; }
+		.semibold { font-weight: 600; }
+		.bold { font-weight: 700; }
+		.ultrabold { font-weight: 900; }
 
 		/* animate on load */
 		.page-content {
