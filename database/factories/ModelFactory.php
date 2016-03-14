@@ -48,7 +48,7 @@ $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
 
     return [
         'name' => rtrim($faker->sentence(3), "."),
-        'description' => $faker->paragraph,
+        'description' => implode('<br><br>', $faker->paragraphs(3)),
         'level' => array_rand(App\Recipe::levels()),
         'course' => array_rand(App\Recipe::courses()),
         'is_private' => $faker->boolean(10), // change of TRUE 10%

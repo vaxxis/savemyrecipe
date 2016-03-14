@@ -10,15 +10,22 @@
                 @endif
                 {{ $recipe->name }}
             </h2>
+
             @if (Auth::user())
                 <div class="pull-right">
-                    <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">Edit</a>
-                    <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">Delete</a>
+                    <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
+                        <i class="icon ion-edit"></i> 
+                        Edit
+                    </a>
+                    <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        Delete
+                    </a>
                 </div>
             @endif
         </div>
 
-        <div class="lead text-muted">
+        <div class="lead text-muted m0 mt20">
             Level: <span class="text-success">{{ App\Recipe::levels()[$recipe->level] }}</span>
             Course: <span class="text-info">{{ App\Recipe::courses()[$recipe->course] }}</span>
         </div>
@@ -29,11 +36,15 @@
 @section('content')
 
     <div class="row">
+
         <div class="col-sm-8">
-            <div class="lead">
-                {!! $recipe->description !!}
-            </div>
+            <p class="mb40">
+                <span class="opacity6">Published</span> {{ $recipe->created_at->diffForHumans() }} <span class="opacity6">by</span> <a href="{{ url('/@'. ($recipe->user->slug ?: $recipe->user->id)) }}">{{ $recipe->user->name }}</a>
+            </p>
+
+            {!! $recipe->description !!}
         </div>
+
         <div class="col-sm-4">
             <h3 class="m0">Ingredients</h3><br>
             <ul class="list-group">
@@ -42,6 +53,7 @@
                 @endforeach
             </ul>
         </div>
+
     </div>
 
 @endsection

@@ -21,7 +21,7 @@
 
 @section('content')
 
-    <h2>User Recipes <small>published by <span class="light">{{ $user->name }}</span></small></h2>
+    <h2>User Recipes <small>published <span class="light">({{ $recipes->total() }}) recipes</span></h2>
     <hr>
 
     @include('partials.recipes-list', [ // recipes page list
