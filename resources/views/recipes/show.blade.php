@@ -4,7 +4,12 @@
 <div class="jumbotron">
     <div class="container">
         <div class="clearfix">
-            <h2 class="pull-left margin0">{{ $recipe->name }}</h2>
+            <h2 class="pull-left margin0">
+                @if ($recipe->is_private)
+                    <i class="icon ion-locked"></i>
+                @endif
+                {{ $recipe->name }}
+            </h2>
             @if (Auth::user())
                 <div class="pull-right">
                     <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">Edit</a>
