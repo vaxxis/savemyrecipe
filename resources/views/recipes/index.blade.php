@@ -11,5 +11,17 @@
 
     @include('partials.recipes-list', ['recipes' => $recipes])
 
+    @if ($recipes->count() == 0)
+        <div class="well well-lg text-center">
+            <br>
+            <br>
+            <br>
+            <p class="lead margin0">Your CookBook is empty. <a href="{{ url('recipe.create') }}">Create a new Recipe</a></p>
+            <br>
+            <br>
+            <br>
+        </div>
+    @endif
+
 
 @endsection
