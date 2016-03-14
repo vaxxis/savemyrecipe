@@ -11,10 +11,10 @@
                 {{ $recipe->name }}
             </h2>
 
-            @if (Auth::user())
+            @if (Auth::user() && Auth::id() == $recipe->user->id)
                 <div class="pull-right">
                     <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
-                        <i class="icon ion-edit"></i> 
+                        <i class="icon ion-edit"></i>
                         Edit
                     </a>
                     <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
