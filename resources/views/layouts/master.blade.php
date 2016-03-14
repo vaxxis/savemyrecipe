@@ -182,7 +182,15 @@
 						<li><a href="{{ url('/login') }}">Login</a></li>
 						<li><a href="{{ url('/register') }}">Register</a></li>
 					@else
-						<li class="navbar-text"><span class="icon ion-person"></span> {{ Auth::user()->name }}</li>
+
+						<li>
+							<a href="{{ url('users/'.Auth::id().'/edit') }}">
+								<i class="icon ion-person"></i> 
+								{{ Auth::user()->name }}
+							</a>
+						</li>
+						
+
 						<li><a href="{{ url('/logout') }}">Logout <i class="icon ion-log-out"></i></a></li>
 					@endif
 				</ul>
@@ -197,9 +205,24 @@
 	<div class="page-content container">
 
 		{{-- print FLASH MESSAGES --}}
-		@if (Session::get('flash_message'))
+		@if ($message = Session::get('flash_message'))
 			<div class="alert alert-success">
-				{{ Session::get('flash_message') }}
+				{{ $message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+		@endif
+
+		@if ($message = Session::get('flash_error'))
+			<div class="alert alert-danger">
+				{{ $message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+		@endif
+
+		@if ($message = Session::get('flash_warning'))
+			<div class="alert alert-warning">
+				{{ $message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 		@endif
 

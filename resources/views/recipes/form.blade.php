@@ -2,11 +2,8 @@
 
     {!! BootForm::text('name') !!}
     {!! BootForm::checkbox('is_private', 'Private (only you will see) &nbsp;<i class="icon ion-locked"></i>') !!}
-
     {!! BootForm::textarea('description', 'Description', null, ['class' => 'wysiwyg']) !!}
-
     {!! BootForm::select('level', 'Level', $recipe->levels(), null, ['placeholder' => 'Select Difficulty']) !!}
-
     {!! BootForm::select('course', 'Course', $recipe->courses(), null, ['placeholder' => 'Select Course']) !!}
 
 

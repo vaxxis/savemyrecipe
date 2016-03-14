@@ -25,12 +25,19 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    // Public routes
+    // PUBLIC ROUTES
     Route::get('/', 'PagesController@index');
     Route::get('/r/{slug}', 'PagesController@showRecipe');
     Route::get('/course/{course}', 'PagesController@filterByCourse');
 
-    Route::auth(); // authentication routes
+
+
+    // AUTHENTICATED ROUTES
+    
+    Route::auth();
+
+    Route::get('users/{id}/edit', 'UsersController@edit');
+    Route::put('users/{user}', 'UsersController@update')->name('users.update');
 
 	Route::resource('recipes', 'RecipesController');
 	Route::get('recipes/{id}/delete', 'RecipesController@destroy');
