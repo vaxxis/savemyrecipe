@@ -10,13 +10,13 @@
             {!! BootForm::file('photo', 'Recipe Picture') !!}
             @if ($pic = $recipe->photo)
                 <div class="thumbnail m0">
-                    <img class="img-responsive" src="{{ url('/').'/'.$pic }}" alt="{{ $recipe->name }}" />
+                    <img class="img-responsive" src="{{ url($pic) }}" alt="{{ $recipe->name }}" />
                     <a class="btn btn-default btn-sm btn-absolute-top-right" href="{{ route('delete.recipe.photo', $recipe->id) }}"><i class="icon ion-trash-a"></i> delete</a>
                 </div>
             @endif
 
-            {!! BootForm::select('level', 'Level', $recipe->levels(), null, ['placeholder' => 'Select Difficulty']) !!}
-            {!! BootForm::select('course', 'Course', $recipe->courses(), null, ['placeholder' => 'Select Course']) !!}
+            {!! BootForm::select('level', 'Level', $recipe->levels(), null) !!}
+            {!! BootForm::select('course', 'Course', $recipe->courses(), null) !!}
         </div>
     </div>
 

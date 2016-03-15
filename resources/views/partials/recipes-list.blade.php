@@ -1,8 +1,15 @@
 @foreach ($recipes as $r)
+
     <div class="recipe row">
+
         <div class="col-xs-4 col-sm-2">
-            <img class="img-rounded"  src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=110&h=110&txttrack=0" alt="" />
+            @if ($r->photo)
+                <img width="110" class="img-rounded m0" src="{{ url($r->photo) }}" alt="{{$r->name}}" />
+            @else
+                <img width="110" class="img-rounded m0" src="{{ asset('images/placeholder.png') }}" alt="Placeholder" />
+            @endif
         </div>
+
         <div class="col-xs-8 col-sm-7">
 
             <h3>

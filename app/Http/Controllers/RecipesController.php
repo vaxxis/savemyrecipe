@@ -11,6 +11,7 @@ use App\IngredientType;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
+use Image;
 use Auth;
 
 class RecipesController extends Controller
@@ -33,8 +34,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::where('user_id', Auth::user()->id)
-                         ->paginate(10);
+        $recipes = Recipe::getUserRecipes(Auth::id());
 
         return view('recipes.index', compact('recipes'));
     }
@@ -66,13 +66,14 @@ class RecipesController extends Controller
             'photo'     => 'image|max:10000',
         ]);
 
-        $data = $request->all();
+        $recipe = Auth::user()->recipes()->create($request->all());
 
         // save recipe photo (with unique filename)
-        $recipe->handlePhoto($request->file('photo'));
-        $data['photo'] = $recipe->photo;
+        if ($request->file('photo')) {
+            $recipe->photo = Recipe::handlePhoto($request->file('photo'));
+            $recipe->save();
+        }
 
-        $recipe = Auth::user()->recipes()->create($data);
 
         // sync recipe ingredients
         $ingredients = $request->input('ingredients') ?: [];
@@ -130,6 +131,7 @@ class RecipesController extends Controller
     public function update($id, Request $request)
     {
         $recipe = Recipe::with('user')->findOrFail($id);
+        $previousPhotoPath = $recipe->photo;
 
         // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
@@ -148,11 +150,20 @@ class RecipesController extends Controller
 
         $data = $request->all();
 
-        // save recipe photo (with unique filename)
-        $recipe->handlePhoto($request->file('photo'));
-        $data['photo'] = $recipe->photo;
+        // manage recipe photo
+        if ($file = $request->file('photo')) {
+
+            if (file_exists($previousPhotoPath) && is_file($previousPhotoPath)) {
+                unlink($previousPhotoPath);
+            }
+
+            // save recipe photo (with unique filename)
+            $data['photo'] = Recipe::handlePhoto($file);
+        }
 
         $recipe->update($data);
+
+
 
 
         Session::flash('flash_message', 'Recipe updated!');
@@ -177,6 +188,11 @@ class RecipesController extends Controller
             return back();
         }
 
+        // delete previous image
+        if (file_exists($recipe->photo) && is_file($recipe->photo)) {
+            unlink($recipe->photo);
+        }
+
         Recipe::destroy($id);
 
         Session::flash('flash_message', 'Recipe deleted!');
@@ -194,7 +210,7 @@ class RecipesController extends Controller
             return back();
         }
 
-        // can't do this right now
+        // delete previous image
         if (file_exists($recipe->photo) && is_file($recipe->photo)) {
             unlink($recipe->photo);
         }

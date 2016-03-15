@@ -4,12 +4,25 @@
 <div class="jumbotron">
     <div class="container">
         <div class="clearfix">
-            <h2 class="pull-left m0">
-                @if ($recipe->is_private)
-                    <i class="icon ion-locked"></i>
-                @endif
-                {{ $recipe->name }}
-            </h2>
+
+            @if ($recipe->photo)
+                <div class="thumbnail pull-left mr20">
+                    <img width="160" class="img-rounded" src="{{ url($recipe->photo) }}" alt="{{$recipe->name}}" />
+                </div>
+            @endif
+
+            <div class="pull-left">
+                <h2 class="m0 mt20">
+                    @if ($recipe->is_private)
+                        <i class="icon ion-locked"></i>
+                    @endif
+                    {{ $recipe->name }}
+                </h2>
+                <div class="lead text-muted light mt10">
+                    Level: <span class="difficulty-level normal">{{ App\Recipe::levels()[$recipe->level] }}</span>
+                    Course: <span class=""><a class="course-page-link normal" href="{{ url('all/'.$recipe->course) }}">{{ App\Recipe::courses()[$recipe->course] }}</a></span>
+                </div>
+            </div>
 
             @if (Auth::user() && Auth::id() == $recipe->user->id)
                 <div class="pull-right">
@@ -23,11 +36,6 @@
                     </a>
                 </div>
             @endif
-        </div>
-
-        <div class="lead text-muted light m0 mt20">
-            Level: <span class="difficulty-level normal">{{ App\Recipe::levels()[$recipe->level] }}</span>
-            Course: <span class=""><a class="course-page-link normal" href="{{ url('all/'.$recipe->course) }}">{{ App\Recipe::courses()[$recipe->course] }}</a></span>
         </div>
     </div>
 </div>
@@ -46,7 +54,7 @@
         </div>
 
         <div class="col-sm-4">
-            <h3 class="m0">Ingredients</h3><br>
+            <h4 class="m0">Ingredients</h4><br>
             <ul class="list-group">
                 @foreach ($recipe->ingredients as $ingredient)
                     <li class="list-group-item">{{ $ingredient }}</li>
