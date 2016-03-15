@@ -26,8 +26,8 @@
         </div>
 
         <div class="lead text-muted light m0 mt20">
-            Level: <span class="text-success">{{ App\Recipe::levels()[$recipe->level] }}</span>
-            Course: <span class="text-info"><a href="{{ url('all/'.$recipe->course) }}">{{ App\Recipe::courses()[$recipe->course] }}</a></span>
+            Level: <span class="difficulty-level normal">{{ App\Recipe::levels()[$recipe->level] }}</span>
+            Course: <span class=""><a class="course-page-link normal" href="{{ url('all/'.$recipe->course) }}">{{ App\Recipe::courses()[$recipe->course] }}</a></span>
         </div>
     </div>
 </div>

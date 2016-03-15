@@ -24,7 +24,7 @@ body {
     padding-bottom: 30px;
 }
 
-.checkbox .icheckbox_flat-blue {
+.checkbox .icheckbox_flat-purple {
     margin-right: 10px;
     margin-left: -20px;
     margin-top: -4px;
@@ -139,6 +139,22 @@ body {
 }
 
 .user-page-link {
-    color: #46C146;
     color: #8E57BF;
+    &:hover {
+        color: darken(#8E57BF, 20%);
+    }
+}
+
+.difficulty-level {
+    color: #46C146;
+    // &:hover {
+    //     color: darken(#46C146, 20%);
+    // }
+}
+
+.course-page-link {
+    color: #43B4D6;
+    &:hover {
+        color: darken(#43B4D6, 20%);
+    }
 }

@@ -8,7 +8,7 @@
 	<title>SaveMyRecipe</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/blue.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/purple.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
@@ -57,7 +57,7 @@
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-person"></i> {{ Auth::user()->name }} &nbsp;<span class="caret"></span></a>
 						    <ul class="dropdown-menu">
 						        <li><a href="{{ url('users/'.Auth::id().'/edit') }}"><i class="icon ion-plus"></i> &nbsp;&nbsp;&nbsp;Create Recipe</a></li>
-						        <li><a href="{{ url('users/'.Auth::id().'/edit') }}"><i class="icon ion-edit"></i> &nbsp;&nbsp;&nbsp;Edit profile</a></li>
+						        <li><a href="{{ url('users/'.Auth::id().'/edit') }}"><i class="icon ion-compose"></i> &nbsp;&nbsp;&nbsp;Edit Your Profile</a></li>
 								<li role="separator" class="divider"></li>
 						        <li><a href="{{ url('/logout') }}"><i class="icon ion-log-out"></i> &nbsp;&nbsp;&nbsp;Logout</a></li>
 						    </ul>

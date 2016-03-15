@@ -13,13 +13,13 @@
             </h3>
 
             <p>
-                <span class="text-muted">Level:</span> <span class="text-success">{{ App\Recipe::levels()[$r->level]  }}</span>
-                <span class="text-muted">Course: <a href="{{ url('all/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
+                <span class="text-muted">Level:</span> <span class="difficulty-level">{{ App\Recipe::levels()[$r->level]  }}</span>
+                <span class="text-muted">Course: <a class="course-page-link" href="{{ url('all/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
             </p>
         </div>
 
         <div class="col-sm-3">
-            <div class="text-muted mt20">
+            <div class="text-muted text-right mt30">
                 <small class="opacity7">Published <time>{{ $r->created_at->diffForHumans() }}</time></small>
                 <div>by <a class="user-page-link" href="{{ url('/@'. ($r->user->slug ?: $r->user->id)) }}">{{ $r->user->name }}</a></div>
             </div>

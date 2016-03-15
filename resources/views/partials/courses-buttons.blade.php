@@ -1,6 +1,12 @@
 
-<a class="btn btn-default {{ ( ! isset($course)) ? 'active' : '' }}" href="{{ url('/all') }}">All</a>
+<div class="btn-group">
 
-@foreach (App\Recipe::courses() as $slug => $c)
-    <a class="btn btn-default {{ (isset($course) && $slug == $course) ? 'active' : '' }}" href="{{ url('all/' . $slug) }}">{{ $c }}</a>
-@endforeach
+    <a class="btn btn-default {{ ( ! isset($course)) ? 'active' : '' }}" href="{{ url('/all') }}">
+        <i class="icon ion-clipboard"></i> 
+        All
+    </a>
+
+    @foreach (App\Recipe::courses() as $slug => $c)
+        <a class="btn btn-default {{ (isset($course) && $slug == $course) ? 'active' : '' }}" href="{{ url('all/' . $slug) }}">{{ $c }}</a>
+    @endforeach
+</div>
