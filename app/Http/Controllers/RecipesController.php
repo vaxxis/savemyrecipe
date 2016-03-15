@@ -97,12 +97,13 @@ class RecipesController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::id() != $id) {
+        $recipe = Recipe::with('ingredients', 'user')->findOrFail($id);
+
+        if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
         }
 
-        $recipe = Recipe::with('ingredients')->findOrFail($id);
         $ingredientTypes = IngredientType::with('ingredients')->get();
 
         return view('recipes.edit', compact('recipe', 'ingredientTypes'));
@@ -118,12 +119,12 @@ class RecipesController extends Controller
      */
     public function update($id, Request $request)
     {
-        if (Auth::id() != $id) {
+        $recipe = Recipe::with('user')->findOrFail($id);
+
+        if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
         }
-
-        $recipe = Recipe::findOrFail($id);
 
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
         $recipe->ingredients()->sync($ingredients);
@@ -145,6 +146,13 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
+        $recipe = Recipe::with('user')->findOrFail($id);
+
+        if (Auth::id() != $recipe->user->id) {
+            Session::flash('flash_error', 'Unauthorized action!');
+            return back();
+        }
+
         Recipe::destroy($id);
 
         Session::flash('flash_message', 'Recipe deleted!');

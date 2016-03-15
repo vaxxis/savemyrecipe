@@ -26,7 +26,7 @@
                             {{ $ingredient->name }}
 
                             <a class="btn btn-default btn-sm pull-right" href="{{ url('ingredients/'.$ingredient->id.'/delete') }}">
-                                <span class="glyphicon glyphicon-trash text-danger"></span> delete
+                                <span class="icon ion-trash-a text-danger"></span> delete
                             </a>
                         </div>
                     </li>
@@ -48,7 +48,7 @@
                         <div>
                             {{ $type }}
                             <a class="btn btn-default btn-sm pull-right" href="{{ url('ingredienttypes/'.$type->id.'/delete') }}">
-                                <span class="glyphicon glyphicon-trash text-danger"></span> delete
+                                <span class="icon ion-trash-a text-danger"></span> delete
                             </a>
                         </div>
                         <hr>

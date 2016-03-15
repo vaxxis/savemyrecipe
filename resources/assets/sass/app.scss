@@ -1,2 +1,139 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "variables";
 
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "responsive";
+@import "utility";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    padding-top: 80px;
+    font-family: 'Lato';
+    margin-bottom: 100px; /* for stiky footer */
+}
+
+.section {
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.page-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.checkbox .icheckbox_flat-blue {
+    margin-right: 10px;
+    margin-left: -20px;
+    margin-top: -4px;
+}
+
+/* summernote wysiwyg editor */
+.note-editor.note-frame {
+    border: 1px solid #CCCCCC;
+}
+.note-popover .popover-content, .panel-heading.note-toolbar {
+    padding: 0 0px 10px 10px;
+    margin: 0;
+}
+.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+.page-title > .icon,
+.modal-title > .icon {
+    color: #ddd;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 40px 0;
+    height: 100px;
+    background-color: #f5f5f5;
+}
+.footer a {
+    color: black;
+}
+
+.modal-header .close {
+    padding: 2px;
+    font-size: 200%;
+}
+
+.ingredient {
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.navbar-nav > li .icon {
+    opacity: 0.7;
+}
+
+.jumbotron {
+    margin-top: -30px;
+}
+.jumbotron p {
+    font-weight: 300;
+}
+
+/* animate on load */
+.page-content {
+    animation: 0.35s fade-up-enter;
+}
+
+@keyframes fade-up-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.course {
+    padding: 30px 10px;
+    text-align: center;
+    color: #666;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    transform: scale(0.9);
+    transition: all .2s ease-in-out;
+    font-weight: 300;
+
+    &:hover {
+        transform: scale(1);
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.home-header {
+    background-image: url(../images/savemyrecipe-home-bg.jpg);
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+.icon {
+    min-width: 16px;
+    min-height: 16px;
+    display: inline-block;
+    text-align: center;
+}
+
+.navbar-brand > img {
+    margin-bottom: 3px;
+    margin-right: 6px;
+}

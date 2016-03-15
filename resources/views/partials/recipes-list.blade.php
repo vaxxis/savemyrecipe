@@ -14,7 +14,7 @@
 
             <p>
                 <span class="text-muted">Level:</span> <span class="text-success">{{ App\Recipe::levels()[$r->level]  }}</span>
-                <span class="text-muted">Course: <a href="{{ url('course/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
+                <span class="text-muted">Course: <a href="{{ url('all/' . $r->course) }}">{{ App\Recipe::courses()[$r->course] }}</a></span>
             </p>
         </div>
 

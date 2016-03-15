@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content.before')
-  <div class="jumbotron">
+  <div class="jumbotron home-header">
       <div class="container">
           <h2>SaveMy<b>Recipe</b></h2>
           <p class="lead">Your own personal cookbook!</p>
@@ -20,31 +20,21 @@
 
 @section('content')
 
-    <h1 class="page-title">
-        <span class="icon ion-pizza text-muted"></span>
-        Recipes <small>Recipes around the world</small>
-    </h1><hr>
+    <div class="section">
+        <div class="row">
 
-    @include('partials.courses-buttons', [ // recipes course buttons
-        'course' => isset($course) ? $course : null
-    ])
+            <h2 class="light text-center mb50">Courses</h2>
 
-    <hr>
-
-    <div class="row">
-        <div class="col-sm-12">
-
-
-            @include('partials.recipes-list', [ // recipes page list
-                'recipes' => $recipes,
-                'course' => isset($course) ? $course : null,
-            ])
-
+            @foreach (App\Recipe::courses() as $key => $value)
+                <div class="col-sm-4 text-center mt10">
+                    <a class="course" href="{{ url('all/'.$key) }}">
+                        <img width="200" class="img-circle" src="{{ asset('images/courses/'.$key.'.jpg') }}" alt="{{ $value }}" />
+                        <h3>{{ $value }}</h3>
+                    </a>
+                </div>
+            @endforeach
 
         </div>
     </div>
-
-    <br>
-    <br>
 
 @endsection

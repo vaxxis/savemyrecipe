@@ -8,179 +8,14 @@
 	<title>SaveMyRecipe</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/purple.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/blue.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
-	<style>
-		html {
-		    position: relative;
-		    min-height: 100%;
-		}
-		body {
-			padding-top: 80px;
-			font-size: 16px;
-			font-family: 'Lato';
-			margin-bottom: 100px; /* for stiky footer */
-		}
-		.page-content {
-			padding-top: 30px;
-			padding-bottom: 30px;
-		}
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-		.form-control {
-			font-size: 16px;
-			height: 40px;
-		}
-		.checkbox .icheckbox_flat-purple {
-			margin-right: 10px;
-			margin-left: -20px;
-			margin-top: -4px;
-		}
+	@include('partials.favicons')
 
-		/* summernote wysiwyg editor */
-		.note-editor.note-frame {
-		    border: 1px solid #CCCCCC;
-		}
-		.note-popover .popover-content, .panel-heading.note-toolbar {
-		    padding: 0 0px 10px 10px;
-		    margin: 0;
-		}
-		.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
-		    margin-top: 10px;
-		    margin-right: 10px;
-		    margin-left: 0;
-		}
-
-		.page-title > .icon,
-		.modal-title > .icon {
-			color: #ddd;
-		}
-
-		.footer {
-			position: absolute;
-		    bottom: 0;
-		    width: 100%;
-			padding: 40px 0;
-		    height: 100px;
-		    background-color: #f5f5f5;
-		}
-		.footer a {
-			color: black;
-		}
-
-		.modal-header {
-			padding: 25px;
-		}
-		.modal-header .close {
-			padding: 2px;
-			font-size: 200%;
-		}
-		.modal-body {
-			padding: 30px!important;
-		}
-
-		.ingredient {
-			margin: 0;
-			padding: 10px;
-			font-size: 18px;
-		}
-
-		.navbar-nav > li .icon {
-		    opacity: 0.7;
-		}
-
-		.lead {
-			font-weight: 400;
-		}
-
-		.jumbotron {
-			margin-top: -30px;
-		}
-		.jumbotron p {
-			font-weight: 300;
-		}
-
-		/* utility */
-		.thin 		{ font-weight: 100; }
-		.light 		{ font-weight: 300; }
-		.normal 	{ font-weight: 400; }
-		.semibold 	{ font-weight: 600; }
-		.bold 		{ font-weight: 700; }
-		.ultrabold 	{ font-weight: 900; }
-
-		.m0 { margin: 0; }
-		.ml10 { margin-left:10px; }
-		.ml20 { margin-left:20px; }
-		.ml30 { margin-left:30px; }
-		.ml40 { margin-left:40px; }
-		.ml50 { margin-left:50px; }
-
-		.mr10 { margin-right:10px; }
-		.mr20 { margin-right:20px; }
-		.mr30 { margin-right:30px; }
-		.mr40 { margin-right:40px; }
-		.mr50 { margin-right:50px; }
-
-		.mt10 { margin-top:10px; }
-		.mt20 { margin-top:20px; }
-		.mt30 { margin-top:30px; }
-		.mt40 { margin-top:40px; }
-		.mt50 { margin-top:50px; }
-
-		.mb10 { margin-bottom:10px; }
-		.mb20 { margin-bottom:20px; }
-		.mb30 { margin-bottom:30px; }
-		.mb40 { margin-bottom:40px; }
-		.mb50 { margin-bottom:50px; }
-
-		.opacity1  { opacity:0.1; }
-		.opacity2  { opacity:0.2; }
-		.opacity3  { opacity:0.3; }
-		.opacity4  { opacity:0.4; }
-		.opacity5  { opacity:0.5; }
-		.opacity6  { opacity:0.6; }
-		.opacity7  { opacity:0.7; }
-		.opacity8  { opacity:0.8; }
-		.opacity9  { opacity:0.9; }
-		.opacity10 { opacity:1.00; }
-
-		/* animate on load */
-		.page-content {
-			animation: 0.35s fade-up-enter;
-		}
-
-		@keyframes fade-up-enter {
-		  0% {
-		    opacity: 0;
-		    transform: translateY(20px)
-		  }
-		  100% {
-		    opacity: 1;
-		    transform: translateY(0)
-		  }
-		}
-
-		@media (min-width: 768px) {
-			.navbar-nav>li>a,
-			.navbar-brand,
-			.navbar-text {
-				margin-top: 0;
-				margin-bottom: 0;
-			    padding-top: 25px;
-			    padding-bottom: 25px;
-			}
-			.jumbotron {
-			    padding-top: 100px;
-			    padding-bottom: 80px;
-			    margin-top: -30px;
-			}
-			.container {
-				max-width: 960px!important;
-			}
-		}
-	</style>
 </head>
 
 <body>
@@ -195,40 +30,51 @@
 	                <span class="icon-bar"></span>
 	            </button>
 	            <a class="navbar-brand" href="{{ url('/') }}">
-								<span class="icon ion-pizza"></span>
-								SaveMy<b>Recipe</b>
-							</a>
+					<img class="inline img-circle" width="24" alt="SaveMyRecipe" src="{{ asset('images/logo.png') }}">
+					SaveMy<b>Recipe</b>
+				</a>
 	        </div>
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 
+				<ul class="nav navbar-nav">
+					<li><a href="{{ url('/all') }}"><span class="icon ion-clipboard"></span> Recipes</a></li>
+				</ul>
 				@if (Auth::user())
 		            <!-- left side of navbar -->
-		            <ul class="nav navbar-nav">
-		                <li><a href="{{ url('/recipes') }}"><span class="icon ion-clipboard"></span> CookBook</a></li>
-		                <li><a href="{{ url('/ingredients') }}"><span class="icon ion-ios-nutrition"></span> Ingredients</a></li>
-		            </ul>
 
 				@endif
 
 	            <!-- right side of navbat -->
 				<ul class="nav navbar-nav navbar-right">
-					@if ( ! Auth::user() )
-						<li><a href="{{ url('/login') }}">Login</a></li>
-						<li><a href="{{ url('/register') }}">Register</a></li>
-					@else
 
-						<li>
-							<a href="{{ url('users/'.Auth::id().'/edit') }}">
-								<i class="icon ion-person"></i>
-								{{ Auth::user()->name }}
-							</a>
+					@if (Auth::user())
+
+						<li><a href="{{ url('/recipes') }}"><span class="icon ion-clipboard"></span> CookBook</a></li>
+						<li><a href="{{ url('/ingredients') }}"><span class="icon ion-ios-nutrition"></span> Ingredients</a></li>
+
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-person"></i> {{ Auth::user()->name }} &nbsp;<span class="caret"></span></a>
+						    <ul class="dropdown-menu">
+						        <li><a href="{{ url('users/'.Auth::id().'/edit') }}"><i class="icon ion-plus"></i> &nbsp;&nbsp;&nbsp;Create Recipe</a></li>
+						        <li><a href="{{ url('users/'.Auth::id().'/edit') }}"><i class="icon ion-edit"></i> &nbsp;&nbsp;&nbsp;Edit profile</a></li>
+								<li role="separator" class="divider"></li>
+						        <li><a href="{{ url('/logout') }}"><i class="icon ion-log-out"></i> &nbsp;&nbsp;&nbsp;Logout</a></li>
+						    </ul>
 						</li>
 
-
-						<li><a href="{{ url('/logout') }}">Logout <i class="icon ion-log-out"></i></a></li>
 					@endif
+
 				</ul>
+
+				@if ( ! Auth::user() )
+					<div class="navbar-right">
+						<ul class="nav navbar-nav">
+							<li><a href="{{ url('/login') }}"><i class="icon ion-log-out"></i> Login</a></li>
+						</ul>
+						<a class="btn navbar-btn btn-primary" href="{{ url('/register') }}">Signup</a>
+					</div>
+				@endif
 			</div>
 
 	    </div><!-- /.container-fluid -->
@@ -277,40 +123,9 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.min.js"></script>
 
-	<script>
-	// TODO: Move this to a self main.js file
-	$(document).ready(function(){
-		$('input').iCheck({
-			checkboxClass: 'icheckbox_flat-purple',
-			radioClass: 'iradio_flat-purple'
-		});
+	<script src="{{ asset('js/app.js') }}"></script>
 
-		// enable wysiwyg editor
-		$('.wysiwyg').summernote({
-			placeholder: 'Write here...',
-			dialogsFade: true,
-			height: 250,
-			disableDragAndDrop: true,
-			toolbar: [
-				// [groupName, [list of button]]
-				['style', ['bold', 'italic', 'underline', 'strikethrough']],
-				['para', ['ul', 'ol', 'paragraph']],
-				['misc', ['clear']],
-				['misc1', ['link']],
-				['misc2', ['undo', 'redo']],
-				['misc3', ['fullscreen', 'codeview']],
-				['misc4', ['help']]
-			]
-		});
-
-		// enable bootstrap tooltips
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	});
-	</script>
 </body>
 </html>

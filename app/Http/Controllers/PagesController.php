@@ -19,13 +19,13 @@ class PagesController extends Controller
     public function index()
     {
         $recipes = Recipe::getPublished();
-        return view('home', compact('recipes'));
+        return view('pages.home', compact('recipes'));
     }
 
     public function filterByCourse($course)
     {
         $recipes = Recipe::getPublishedByCourse($course);
-        return view('home', compact('recipes', 'course'));
+        return view('pages.recipes', compact('recipes', 'course'));
     }
 
     public function showRecipe($slug)
@@ -34,6 +34,13 @@ class PagesController extends Controller
         $recipe->load('ingredients', 'user');
 
         return view('recipes.show', compact('recipe'));
+    }
+
+    public function showPublicRecipes()
+    {
+        $recipes = Recipe::getPublished();
+
+        return view('pages.recipes', compact('recipes'));
     }
 
     public function showUser($slug)

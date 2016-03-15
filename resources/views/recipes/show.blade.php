@@ -18,16 +18,16 @@
                         Edit
                     </a>
                     <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
-                        <i class="glyphicon glyphicon-trash"></i>
+                        <i class="icon ion-trash-a"></i>
                         Delete
                     </a>
                 </div>
             @endif
         </div>
 
-        <div class="lead text-muted m0 mt20">
+        <div class="lead text-muted light m0 mt20">
             Level: <span class="text-success">{{ App\Recipe::levels()[$recipe->level] }}</span>
-            Course: <span class="text-info">{{ App\Recipe::courses()[$recipe->course] }}</span>
+            Course: <span class="text-info"><a href="{{ url('all/'.$recipe->course) }}">{{ App\Recipe::courses()[$recipe->course] }}</a></span>
         </div>
     </div>
 </div>

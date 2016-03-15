@@ -16,24 +16,28 @@ class UsersTableSeeder extends Seeder
 
         User::create(array( // demo
         	'name' => 'Vasile Botoroga',
+            'slug' => 'vasilebotoroga',
         	'email' => 'user@example.com',
         	'password' => bcrypt('user'),
         ));
 
         User::create(array( // user1
         	'name' => 'Mario Rossi',
+            'slug' => 'mariorossi',
         	'email' => 'user1@example.com',
         	'password' => bcrypt('user1'),
         ));
 
         User::create(array( // user2
         	'name' => 'Mario Bianchi',
+            'slug' => 'mariobianchi',
         	'email' => 'user2@example.com',
         	'password' => bcrypt('user2'),
         ));
 
         User::create(array( // user3
         	'name' => 'Gianni Rotonda',
+            'slug' => 'giannirotonda',
         	'email' => 'user3@example.com',
         	'password' => bcrypt('user3'),
         ));

@@ -27,8 +27,9 @@ Route::group(['middleware' => ['web']], function () {
 
     // PUBLIC ROUTES
     Route::get('/', 'PagesController@index');
+    Route::get('/all', 'PagesController@showPublicRecipes');
+    Route::get('/all/{course}', 'PagesController@filterByCourse');
     Route::get('/r/{slug}', 'PagesController@showRecipe');
-    Route::get('/course/{course}', 'PagesController@filterByCourse');
     Route::get('@{slugOrId}', 'PagesController@showUser');
 
 
