@@ -61,9 +61,18 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'photo'     => 'image|max:10000',
+        ]);
 
-        $recipe = Auth::user()->recipes()->create($request->all());
+        $data = $request->all();
+
+        // save recipe photo (with unique filename)
+        $recipe->handlePhoto($request->file('photo'));
+        $data['photo'] = $recipe->photo;
+
+        $recipe = Auth::user()->recipes()->create($data);
 
         // sync recipe ingredients
         $ingredients = $request->input('ingredients') ?: [];
@@ -99,6 +108,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('ingredients', 'user')->findOrFail($id);
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
@@ -121,15 +131,28 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('user')->findOrFail($id);
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
         }
 
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'photo'     => 'image|max:10000|max:10000',
+        ]);
+
+        // associate ingredients to recipe
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
         $recipe->ingredients()->sync($ingredients);
 
-        $recipe->update($request->all());
+        $data = $request->all();
+
+        // save recipe photo (with unique filename)
+        $recipe->handlePhoto($request->file('photo'));
+        $data['photo'] = $recipe->photo;
+
+        $recipe->update($data);
 
 
         Session::flash('flash_message', 'Recipe updated!');
@@ -148,6 +171,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('user')->findOrFail($id);
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
@@ -158,6 +182,29 @@ class RecipesController extends Controller
         Session::flash('flash_message', 'Recipe deleted!');
 
         return redirect('recipes');
+    }
+
+    public function deletePhoto($id)
+    {
+        $recipe = Recipe::with('user')->findOrFail($id);
+
+        // TODO: Move to middleware guard
+        if (Auth::id() != $recipe->user->id) {
+            Session::flash('flash_error', 'Unauthorized action!');
+            return back();
+        }
+
+        // can't do this right now
+        if (file_exists($recipe->photo) && is_file($recipe->photo)) {
+            unlink($recipe->photo);
+        }
+
+        $recipe->photo = null;
+        $recipe->save();
+
+        Session::flash('flash_message', 'Recipe photo deleted!');
+
+        return back();
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
@@ -24,6 +25,7 @@ class Recipe extends Model implements SluggableInterface
      */
     protected $fillable = [
         'name',
+        'photo',
         'description',
         'course',           // category es. Apetizers or Desserts
         'level',            // difficulty level
@@ -41,6 +43,11 @@ class Recipe extends Model implements SluggableInterface
         'save_to'    => 'slug',
         'on_update'  => true,
     ];
+
+    /**
+     * Define uploaded file path
+     */
+    protected $uploadPath = 'uploads/recipes';
 
     /**
      * The ingredients that belong to the recipe.
@@ -101,5 +108,20 @@ class Recipe extends Model implements SluggableInterface
             'desserts'      => 'Desserts',
             'drinks'        => 'Drinks',
         ];
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        return ($value ? $this->uploadPath .'/'. $value : $value);
+    }
+
+    public function handlePhoto(UploadedFile $file)
+    {
+        $unique = md5($file->getClientOriginalName().time());
+        $filename = $this->id . '-recipe-' . $unique . '.' . $file->getClientOriginalExtension();
+
+        $file->move($this->uploadPath, $filename);
+
+        $this->photo = $filename;
     }
 }

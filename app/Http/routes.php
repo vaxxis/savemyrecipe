@@ -43,6 +43,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::resource('recipes', 'RecipesController');
 	Route::get('recipes/{id}/delete', 'RecipesController@destroy');
+    Route::get('recipes/{id}/delete-photo', 'RecipesController@deletePhoto')->name('delete.recipe.photo');
 
     Route::resource('ingredients', 'IngredientsController');
     Route::get('ingredients/{id}/delete', 'IngredientsController@destroy');
