@@ -14,7 +14,6 @@ $(document).ready(function(){
             // [groupName, [list of button]]
             ['style', ['bold', 'italic', 'underline', 'strikethrough']],
             ['para', ['ul', 'ol', 'paragraph']],
-            ['misc', ['clear']],
             ['misc1', ['link']],
             ['misc2', ['undo', 'redo']],
             ['misc3', ['fullscreen', 'codeview']],

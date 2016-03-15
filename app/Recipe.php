@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Image;
 
 class Recipe extends Model implements SluggableInterface
 {
@@ -24,6 +26,7 @@ class Recipe extends Model implements SluggableInterface
      */
     protected $fillable = [
         'name',
+        'photo',
         'description',
         'course',           // category es. Apetizers or Desserts
         'level',            // difficulty level
@@ -41,6 +44,11 @@ class Recipe extends Model implements SluggableInterface
         'save_to'    => 'slug',
         'on_update'  => true,
     ];
+
+    /**
+     * Define uploaded file path
+     */
+    protected static $uploadPath = 'uploads/recipes';
 
     /**
      * The ingredients that belong to the recipe.
@@ -81,6 +89,13 @@ class Recipe extends Model implements SluggableInterface
                ->paginate(10);
     }
 
+    public static function getUserRecipes($user_id)
+    {
+        return static::where('user_id', $user_id)
+               ->orderBy('created_at', 'desc')
+               ->paginate(10);
+    }
+
     public static function levels()
     {
         return [
@@ -101,5 +116,39 @@ class Recipe extends Model implements SluggableInterface
             'desserts'      => 'Desserts',
             'drinks'        => 'Drinks',
         ];
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        // if the field is an URL, return it
+        if (!filter_var($value, FILTER_VALIDATE_URL) === false) {
+            return $value;
+        }
+
+        if (strpos($value, Recipe::$uploadPath) !== false) {
+            return $value;
+        }
+
+        $sourcefile = Recipe::$uploadPath .'/'. $value;
+        return $value ? $sourcefile : $value;
+    }
+
+    public static function handlePhoto(UploadedFile $file)
+    {
+        $unique = md5($file->getClientOriginalName().time());
+        $filename = $unique . '.' . $file->getClientOriginalExtension();
+
+        $image = Image::make($file);
+
+        // TODO: check the size bettween original and resized in case the source
+        // is already super compressed (eg. JPGmini has better compression)
+        $image->fit(600, 600, function ($constraint) {
+            $constraint->upsize();
+        });
+
+        // store the image file
+        $image->save(Recipe::$uploadPath . '/' . $filename, 80);
+
+        return $filename;
     }
 }

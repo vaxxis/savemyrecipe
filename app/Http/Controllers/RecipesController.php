@@ -11,6 +11,7 @@ use App\IngredientType;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
+use Image;
 use Auth;
 
 class RecipesController extends Controller
@@ -33,8 +34,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::where('user_id', Auth::user()->id)
-                         ->paginate(10);
+        $recipes = Recipe::getUserRecipes(Auth::id());
 
         return view('recipes.index', compact('recipes'));
     }
@@ -61,9 +61,19 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'photo'     => 'image|max:10000',
+        ]);
 
         $recipe = Auth::user()->recipes()->create($request->all());
+
+        // save recipe photo (with unique filename)
+        if ($request->file('photo')) {
+            $recipe->photo = Recipe::handlePhoto($request->file('photo'));
+            $recipe->save();
+        }
+
 
         // sync recipe ingredients
         $ingredients = $request->input('ingredients') ?: [];
@@ -99,6 +109,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('ingredients', 'user')->findOrFail($id);
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
@@ -120,16 +131,39 @@ class RecipesController extends Controller
     public function update($id, Request $request)
     {
         $recipe = Recipe::with('user')->findOrFail($id);
+        $previousPhotoPath = $recipe->photo;
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
         }
 
+        $this->validate($request, [
+            'name'      => 'required|max:255',
+            'photo'     => 'image|max:10000|max:10000',
+        ]);
+
+        // associate ingredients to recipe
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
         $recipe->ingredients()->sync($ingredients);
 
-        $recipe->update($request->all());
+        $data = $request->all();
+
+        // manage recipe photo
+        if ($file = $request->file('photo')) {
+
+            if (file_exists($previousPhotoPath) && is_file($previousPhotoPath)) {
+                unlink($previousPhotoPath);
+            }
+
+            // save recipe photo (with unique filename)
+            $data['photo'] = Recipe::handlePhoto($file);
+        }
+
+        $recipe->update($data);
+
+
 
 
         Session::flash('flash_message', 'Recipe updated!');
@@ -148,9 +182,15 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('user')->findOrFail($id);
 
+        // TODO: Move to middleware guard
         if (Auth::id() != $recipe->user->id) {
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
+        }
+
+        // delete previous image
+        if (file_exists($recipe->photo) && is_file($recipe->photo)) {
+            unlink($recipe->photo);
         }
 
         Recipe::destroy($id);
@@ -158,6 +198,29 @@ class RecipesController extends Controller
         Session::flash('flash_message', 'Recipe deleted!');
 
         return redirect('recipes');
+    }
+
+    public function deletePhoto($id)
+    {
+        $recipe = Recipe::with('user')->findOrFail($id);
+
+        // TODO: Move to middleware guard
+        if (Auth::id() != $recipe->user->id) {
+            Session::flash('flash_error', 'Unauthorized action!');
+            return back();
+        }
+
+        // delete previous image
+        if (file_exists($recipe->photo) && is_file($recipe->photo)) {
+            unlink($recipe->photo);
+        }
+
+        $recipe->photo = null;
+        $recipe->save();
+
+        Session::flash('flash_message', 'Recipe photo deleted!');
+
+        return back();
     }
 
 }

@@ -14,6 +14,15 @@ body {
     margin-bottom: 100px; /* for stiky footer */
 }
 
+// Animate primary buttons
+.btn.btn-primary {
+    transition: all .3s;
+    transform: scale(1);
+}
+.btn.btn-primary.btn:active {
+    transform: scale(1.1);
+}
+
 .section {
     padding-top: 40px;
     padding-bottom: 80px;
@@ -162,4 +171,13 @@ body {
     &:hover {
         color: darken(#43B4D6, 20%);
     }
+}
+
+.thumbnail {
+    position: relative;
+}
+.btn-absolute-top-right {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }

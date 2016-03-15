@@ -48,6 +48,9 @@ $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
 
     return [
         'name' => rtrim($faker->sentence(3), "."),
+
+        'photo' => $faker->boolean(50) ? $faker->imageUrl(300, 300, 'food') : null, // 50% CHANCE
+
         'description' => implode('<br><br>', $faker->paragraphs(3)),
         'level' => array_rand(App\Recipe::levels()),
         'course' => array_rand(App\Recipe::courses()),

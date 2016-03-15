@@ -160,6 +160,7 @@ return [
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
     ],
@@ -211,6 +212,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];
