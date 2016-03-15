@@ -39,7 +39,7 @@
 
         <div class="col-sm-8">
             <p class="mb40">
-                <span class="opacity6">Published</span> {{ $recipe->created_at->diffForHumans() }} <span class="opacity6">by</span> <a href="{{ url('/@'. ($recipe->user->slug ?: $recipe->user->id)) }}">{{ $recipe->user->name }}</a>
+                <span class="opacity6">Published</span> {{ $recipe->created_at->diffForHumans() }} <span class="opacity6">by</span> <a class="user-page-link" href="{{ url('/@'. ($recipe->user->slug ?: $recipe->user->id)) }}">{{ $recipe->user->name }}</a>
             </p>
 
             {!! $recipe->description !!}

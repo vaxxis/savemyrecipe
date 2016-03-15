@@ -21,7 +21,7 @@
         <div class="col-sm-3">
             <div class="text-muted mt20">
                 <small class="opacity7">Published <time>{{ $r->created_at->diffForHumans() }}</time></small>
-                <div>by <a href="{{ url('/@'. ($r->user->slug ?: $r->user->id)) }}">{{ $r->user->name }}</a></div>
+                <div>by <a class="user-page-link" href="{{ url('/@'. ($r->user->slug ?: $r->user->id)) }}">{{ $r->user->name }}</a></div>
             </div>
         </div>
     </div>
