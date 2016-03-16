@@ -13,23 +13,29 @@ class RecipesTableSeeder extends Seeder
      */
     public function run()
     {
+        $downloadPhotosFromInternet = false;
+
         DB::table('recipes')->delete();
         DB::table('ingredient_recipe')->delete();
 
         // handle recipes photos
-        if ($this->command->confirm("Delete all files from 'public/uploads/recipes' directory?", true)) {
-            $status = Storage::deleteDirectory('public/uploads/recipes', true);
-            Storage::put('public/uploads/recipes/.gitkeep', '');
-            $this->command->comment("Folder content deleted ({$status})");
-            $this->command->line("\n");
+        // if ($this->command->confirm("Delete all files from 'public/uploads/recipes' directory?", true)) {
+        //     $status = Storage::deleteDirectory('public/uploads/recipes', true);
+        //     Storage::put('public/uploads/recipes/.gitkeep', '');
+        //     $this->command->comment("Folder content deleted ({$status})");
+        //     $this->command->line("\n");
+        // }
+        
+        if ($this->command->confirm("Download recipe photos from internet? (recommended only for fast connections)")) {
+            $downloadPhotosFromInternet = true;
         }
 
         $ingredients = App\Ingredient::lists('id');
 
-        $this->command->info("Creating Recipes...");
-        $progressBar = $this->command->getOutput()->createProgressBar(300);
+        $COUNT = 200;
+        $progressBar = $this->command->getOutput()->createProgressBar($COUNT);
 
-        factory(Recipe::class, 300)->create()->each(function($recipe) use($ingredients, $progressBar) {
+        factory(Recipe::class, $COUNT)->create()->each(function($recipe) use($ingredients, $downloadPhotosFromInternet, $progressBar) {
 
             // set a random number of ingredients on recipe
             $tempIngredients = $ingredients->random(rand(2, $ingredients->count() / 2));
@@ -41,7 +47,7 @@ class RecipesTableSeeder extends Seeder
             }
 
             // download recipe photo (from unsplash API)
-            if ($this->boolean(3)) { // 5% chance of TRUE
+            if ($downloadPhotosFromInternet && $this->boolean(3)) { // 5% chance of TRUE
 
                 $url = 'https://source.unsplash.com/category/food/300x300';
                 $filepath = $this->downloadImage('public/uploads/recipes', $url);
