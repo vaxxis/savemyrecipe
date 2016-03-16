@@ -46,7 +46,7 @@ class IngredientsController extends Controller
     public function create()
     {
         $ingredientTypesSelect = IngredientType::lists('name','id');
-        
+
         return view('ingredients.create', compact('ingredientTypesSelect'));
     }
 
@@ -75,9 +75,7 @@ class IngredientsController extends Controller
      */
     public function show($id)
     {
-        $ingredient = Ingredient::findOrFail($id);
-
-        return $ingredient;
+        return Ingredient::findOrFail($id);
     }
 
     /**

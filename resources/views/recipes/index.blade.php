@@ -16,7 +16,7 @@
             <br>
             <br>
             <br>
-            <p class="lead m0">Your CookBook is empty. <a href="{{ url('recipes/create') }}">Create a new Recipe</a></p>
+            <p class="lead m0">Your CookBook is empty. <a href="{{ url('recipes/create') }}">Add a new Recipe</a></p>
             <br>
             <br>
             <br>

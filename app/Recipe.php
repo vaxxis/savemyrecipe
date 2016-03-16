@@ -68,14 +68,16 @@ class Recipe extends Model implements SluggableInterface
 
     public static function getPublished($user = null)
     {
-        return static::where('is_private', 0)
+        return static::with('user', 'ingredients')
+               ->where('is_private', 0)
                ->orderBy('created_at', 'desc')
                ->paginate(10);
     }
 
     public static function getPublishedByCourse($course)
     {
-        return static::where('is_private', 0)
+        return static::with('user', 'ingredients')
+               ->where('is_private', 0)
                ->orderBy('created_at', 'desc')
                ->where('course', $course)
                ->paginate(10);
@@ -83,7 +85,8 @@ class Recipe extends Model implements SluggableInterface
 
     public static function getPublishedByUser($user_id)
     {
-        return static::where('is_private', 0)
+        return static::with('user', 'ingredients')
+               ->where('is_private', 0)
                ->orderBy('created_at', 'desc')
                ->where('user_id', $user_id)
                ->paginate(10);
@@ -91,7 +94,8 @@ class Recipe extends Model implements SluggableInterface
 
     public static function getUserRecipes($user_id)
     {
-        return static::where('user_id', $user_id)
+        return static::with('user', 'ingredients')
+               ->where('user_id', $user_id)
                ->orderBy('created_at', 'desc')
                ->paginate(10);
     }

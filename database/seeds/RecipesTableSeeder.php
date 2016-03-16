@@ -24,8 +24,8 @@ class RecipesTableSeeder extends Seeder
             File::cleanDirectory('public/uploads/recipes');
             File::put('public/uploads/recipes/.gitkeep', '');
         }
-        
-        if ($this->command->confirm("Download recipe photos from internet? (recommended only for fast connections)")) {
+
+        if ($this->command->confirm("Download recipe photos from internet? (recommended only for fast connections)", true)) {
             $downloadPhotosFromInternet = true;
         }
 
@@ -46,13 +46,12 @@ class RecipesTableSeeder extends Seeder
             }
 
             // download recipe photo (from unsplash API)
-            if ($downloadPhotosFromInternet && $this->boolean(15)) { // 15% chance of TRUE
+            if ($downloadPhotosFromInternet && $this->boolean(35)) { // 15% chance of TRUE
 
                 $url = 'https://source.unsplash.com/category/food/300x300';
                 $filepath = $this->downloadImage('public/uploads/recipes', $url);
 
-                // $this->command->info("Image saved to {$filepath}");
-
+                $filepath = str_replace('public/', '', $filepath);
                 $recipe->photo = $filepath;
                 $recipe->save();
             }

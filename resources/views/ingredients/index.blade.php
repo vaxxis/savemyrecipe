@@ -33,8 +33,9 @@
                 @foreach ($ingredients as $ingredient)
                     <li class="list-group-item">
                         <div class="ingredient">
-                            <small class="text-muted">{{ $ingredient->ingredienttype }}: </small>
+
                             {{ $ingredient->name }}
+                            <small class="text-muted">({{ $ingredient->ingredienttype }})</small>
 
                             <a class="btn btn-default btn-sm pull-right" href="{{ url('ingredients/'.$ingredient->id.'/delete') }}">
                                 <span class="icon ion-trash-a text-danger"></span> delete

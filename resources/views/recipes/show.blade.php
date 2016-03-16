@@ -24,18 +24,22 @@
                 </div>
             </div>
 
-            @if (Auth::user() && Auth::id() == $recipe->user->id)
-                <div class="pull-right">
-                    <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
-                        <i class="icon ion-edit"></i>
-                        Edit
-                    </a>
-                    <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
-                        <i class="icon ion-trash-a"></i>
-                        Delete
-                    </a>
-                </div>
-            @endif
+            <div class="pull-right">
+                @can('edit', $recipe)
+                <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
+                    <i class="icon ion-edit"></i>
+                    Edit
+                </a>
+                @endcan
+
+                @can('delete', $recipe)
+                <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
+                    <i class="icon ion-trash-a"></i>
+                    Delete
+                </a>
+                @endcan
+            </div>
+
         </div>
     </div>
 </div>
