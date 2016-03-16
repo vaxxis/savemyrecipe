@@ -36,12 +36,11 @@ elixir(function(mix) {
 
     .copy('./resources/assets/images', './public/images')
 
-
-    .version([
-        'css/app.css',
-        'css/libs.css',
-
-        'js/app.js',
-        'js/libs.js'
-    ])
+    // .version([
+    //     'css/app.css',
+    //     'css/libs.css',
+    //
+    //     'js/app.js',
+    //     'js/libs.js'
+    // ])
 });

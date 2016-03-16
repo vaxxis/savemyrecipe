@@ -10,14 +10,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/flat/purple.css" rel="stylesheet">
 
-	@if (env('APP_ENV') != 'local')
-		<link href="{{ elixir('css/libs.css') }}" rel="stylesheet">
-		<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
-	@else
-		<link href="{{ asset('css/libs.css') }}" rel="stylesheet">
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	@endif
-
+	<link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 	@include('partials.favicons')
 
@@ -129,13 +123,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
 
-	@if (env('APP_ENV') != 'local')
-		<script src="{{ elixir('js/libs.js') }}"></script>
-		<script src="{{ elixir('js/app.js') }}"></script>
-	@else
-		<script src="{{ asset('js/libs.js') }}"></script>
-		<script src="{{ asset('js/app.js') }}"></script>
-	@endif
+	<script src="{{ asset('js/libs.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
 
 
 </body>
