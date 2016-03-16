@@ -18,8 +18,8 @@ class CreateRecipesTable extends Migration
 
             $table->string('name');
             $table->string('photo')->nullable();
-            $table->string('slug');
-            $table->text('description');
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
 
             // easy | medium | hard | very hard
             $table->string('level', 20);

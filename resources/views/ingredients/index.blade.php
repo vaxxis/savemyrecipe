@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 class="page-title">
+    <h1 class="page-title m0">
         <span class="icon ion-ios-nutrition text-muted"></span>
         Ingredients
 
@@ -11,6 +11,17 @@
         </button>
     </h1>
     <hr>
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <div class="bold mb10"><i class="icon ion-alert-circled"></i> Ooops, there are some errors!</div>
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <br>
 

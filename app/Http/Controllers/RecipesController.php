@@ -60,10 +60,9 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
-            'name'      => 'required|max:255',
-            'photo'     => 'image|max:10000',
+            'name' => 'required|max:255',
+            'photo' => 'image|max:10000',
         ]);
 
         $recipe = Auth::user()->recipes()->create($request->all());
@@ -130,6 +129,11 @@ class RecipesController extends Controller
      */
     public function update($id, Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'photo' => 'image|max:10000',
+        ]);
+
         $recipe = Recipe::with('user')->findOrFail($id);
         $previousPhotoPath = $recipe->photo;
 
@@ -138,11 +142,6 @@ class RecipesController extends Controller
             Session::flash('flash_error', 'Unauthorized action!');
             return back();
         }
-
-        $this->validate($request, [
-            'name'      => 'required|max:255',
-            'photo'     => 'image|max:10000|max:10000',
-        ]);
 
         // associate ingredients to recipe
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
@@ -161,9 +160,8 @@ class RecipesController extends Controller
             $data['photo'] = Recipe::handlePhoto($file);
         }
 
+
         $recipe->update($data);
-
-
 
 
         Session::flash('flash_message', 'Recipe updated!');

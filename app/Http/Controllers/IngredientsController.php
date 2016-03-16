@@ -46,6 +46,7 @@ class IngredientsController extends Controller
     public function create()
     {
         $ingredientTypesSelect = IngredientType::lists('name','id');
+        
         return view('ingredients.create', compact('ingredientTypesSelect'));
     }
 
@@ -56,7 +57,7 @@ class IngredientsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, ['name' => 'required|max:255|unique:ingredients']);
 
         Ingredient::create($request->all());
 
@@ -89,6 +90,7 @@ class IngredientsController extends Controller
     public function edit($id)
     {
         $ingredient = Ingredient::findOrFail($id);
+
         $ingredientTypesSelect = IngredientType::lists('name','id');
 
         return view('ingredients.edit', compact('ingredientTypesSelect', 'ingredient'));
@@ -103,9 +105,10 @@ class IngredientsController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['name' => 'required', ]);
-
         $ingredient = Ingredient::findOrFail($id);
+
+        $this->validate($request, ['name' => 'required|max:255|unique:ingredients']);
+
         $ingredient->update($request->all());
 
         Session::flash('flash_message', 'Ingredient updated!');

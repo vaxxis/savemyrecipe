@@ -61,32 +61,18 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        $validate['name'] = 'required|max:255';
-        $validate['slug'] = 'alpha_num|max:255';
-        $newData['name'] = $request->input('name');
+        $this->validate($request, [
+            'name' =>       'required|max:255',
+            // 'email' =>      'required|email|max:255|unique:users',
+            'slug' =>       'sometimes|alpha_num|max:255',
+            'password' =>   'sometimes|min:6|confirmed',
+        ]);
 
-        // don't update user password if
-        // he left the field blank
-        if ($pass = $request->input('password')) {
-            $validate['password'] = 'required|min:6|confirmed';
-            $newData['password'] = bcrypt($pass);
-        }
-
-        // validate email only if user changed it
-        if ($user->email != $request->input('email')) {
-            $validate['email'] = 'required|email|max:255|unique:users';
-            $newData['email'] = $request->input('email');
-        }
-
-
-        $this->validate($request, $validate); // validate
-
-        $newData['slug'] = $request->input('slug');
-        $user->update($newData);
+        $user->update($request->all());
 
         Session::flash('flash_message', 'User has been updated!');
 
-        return redirect('recipes');
+        return redirect('users/'.$user->id.'/edit');
     }
 
 }

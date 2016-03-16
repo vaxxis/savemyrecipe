@@ -36,6 +36,19 @@ class IngredientTypesController extends Controller
     }
 
     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255|unique:ingredient_types,name',
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -52,7 +65,7 @@ class IngredientTypesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', ]);
+        $this->validate($request, ['name' => 'required|max:255|unique:ingredient_types']);
 
         IngredientType::create($request->all());
 
@@ -98,9 +111,10 @@ class IngredientTypesController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['name' => 'required', ]);
-
         $ingredienttype = IngredientType::findOrFail($id);
+
+        $this->validate($request, ['name' => 'required|max:255|unique:ingredient_types']);
+
         $ingredienttype->update($request->all());
 
         Session::flash('flash_message', 'IngredientType updated!');

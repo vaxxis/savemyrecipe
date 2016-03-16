@@ -14,14 +14,14 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
 
             $table->integer('ingredient_type_id')->unsigned();
             $table->foreign('ingredient_type_id')->references('id')->on('ingredient_types')->onDelete('cascade');
 
             $table->timestamps();
         });
-            
+
     }
 
     /**

@@ -45,19 +45,18 @@ $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
 
     $user_id = App\User::lists('id')->random();
     $date = $faker->dateTimeThisMonth;
+    $photoProviderUrl = "http://lorempixel.com/300/300/food/" . rand(0,10);
 
     return [
-        'name' => rtrim($faker->sentence(3), "."),
-
-        'photo' => $faker->boolean(50) ? $faker->imageUrl(300, 300, 'food') : null, // 50% CHANCE
-
-        'description' => implode('<br><br>', $faker->paragraphs(3)),
-        'level' => array_rand(App\Recipe::levels()),
-        'course' => array_rand(App\Recipe::courses()),
-        'is_private' => $faker->boolean(10), // change of TRUE 10%
-        'user_id' => $user_id,
-        'created_at' => $date,
-        'updated_at' => $date,
+        'name'          => rtrim($faker->sentence(3), "."),
+        'photo'         => $faker->boolean(50) ? $photoProviderUrl : null, // 50% CHANCE,
+        'description'   => implode('<br><br>', $faker->paragraphs(3)),
+        'level'         => array_rand(App\Recipe::levels()),
+        'course'        => array_rand(App\Recipe::courses()),
+        'is_private'    => $faker->boolean(10), // change of TRUE 10%
+        'user_id'       => $user_id,
+        'created_at'    => $date,
+        'updated_at'    => $date,
     ];
 
 });
