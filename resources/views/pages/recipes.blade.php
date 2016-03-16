@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <h1 class="page-title">
+    <h1 class="page-title mt0">
         Recipes
         <small class="light">
-            all the recipes submitted <span class="normal">({{ $recipes->total() }})</span>
+            all the recipes based on search <span class="normal">({{ $recipes->total() }})</span>
         </small>
     </h1>
     <hr>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
-            <h2>Edit User <span class="light">{{ $user->name }}</span></h2>
+            <h2 class="page-title">Edit User <span class="light">{{ $user->name }}</span></h2>
             <hr>
 
             <div class="alert alert-info">
@@ -17,7 +17,7 @@
 
                 {!! BootForm::text('name', 'Full Name') !!}
                 {!! BootForm::text('slug', 'Nickname', null, ['placeholder' => 'eg. mariorossi']) !!}
-                {!! BootForm::text('email', 'Email Address') !!}
+                {!! BootForm::text('email', 'Email Address', null, ['disabled']) !!}
                 {!! BootForm::password('password', 'Password') !!}
                 {!! BootForm::password('password_confirmation', 'Confirm Password') !!}<br>
                 {!! BootForm::submit('Save Changes', ['class' => 'btn btn-primary btn-lg']) !!}

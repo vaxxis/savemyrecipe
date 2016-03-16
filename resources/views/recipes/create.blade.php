@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Create New Recipe</h1>
+    <h1 class="page-title m0">Create New Recipe</h1>
     <hr>
 
     {{-- create/update form --}}

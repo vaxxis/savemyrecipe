@@ -14,7 +14,7 @@
 
             <h3>
                 @if ($r->is_private)
-                    <i class="icon ion-locked"></i>
+                    <i class="icon ion-locked" data-toggle="tooltip" data-placement="top" title="Only you see this recipe"></i>
                 @endif
                 <a href="{{ url('r/' . $r->slug) }}">{{ $r->name }}</a>
             </h3>

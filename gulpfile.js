@@ -12,12 +12,36 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss')
+
+    mix
+
+    .sass('app.scss')
+
     .scripts([
         './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    ], './public/js/plugins.js')
+        './node_modules/summernote/dist/summernote.min.js',
+    ], './public/js/libs.js')
+
     .scripts([
         'app.js'
     ], './public/js/app.js')
-    .version('css/app.css')
+
+    .styles([
+        './node_modules/ionicons/css/ionicons.min.css',
+        './node_modules/summernote/dist/summernote.css',
+    ], './public/css/libs.css')
+
+    .copy('./node_modules/ionicons/fonts', './public/fonts')
+    .copy('./node_modules/summernote/dist/font', './public/css/font')
+
+    .copy('./resources/assets/images', './public/images')
+
+
+    .version([
+        'css/app.css',
+        'css/libs.css',
+
+        'js/app.js',
+        'js/libs.js'
+    ])
 });

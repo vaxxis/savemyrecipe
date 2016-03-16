@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <h1>
-        CookBook <small>Containing all your recipes <span class="light">({{ $recipes->total() }})</span></small>
+    <h1 class="page-title mt0">
+        CookBook <small class="light">All your personal recipes <span class="normal">({{ $recipes->total() }})</span></small>
         <a href="{{ url('recipes/create') }}" class="btn btn-primary pull-right">Add New Recipe</a>
     </h1>
     <hr>

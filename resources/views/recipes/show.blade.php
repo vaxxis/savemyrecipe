@@ -50,7 +50,10 @@
                 <span class="opacity6">Published</span> {{ $recipe->created_at->diffForHumans() }} <span class="opacity6">by</span> <a class="user-page-link" href="{{ url('/@'. ($recipe->user->slug ?: $recipe->user->id)) }}">{{ $recipe->user->name }}</a>
             </p>
 
-            {!! $recipe->description !!}
+            <div class="readable">
+                {!! $recipe->description !!}
+            </div>
+
         </div>
 
         <div class="col-sm-4">

@@ -11,7 +11,7 @@ html {
 body {
     padding-top: 80px;
     font-family: 'Lato';
-    margin-bottom: 100px; /* for stiky footer */
+    margin-bottom: 120px; /* for stiky footer */
 }
 
 // Animate primary buttons
@@ -20,7 +20,7 @@ body {
     transform: scale(1);
 }
 .btn.btn-primary.btn:active {
-    transform: scale(1.1);
+    transform: scale(0.92);
 }
 
 .section {
@@ -29,8 +29,8 @@ body {
 }
 
 .page-content {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .checkbox .icheckbox_flat-purple {
@@ -180,4 +180,8 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+.readable {
+    font-size: 18px;
 }
