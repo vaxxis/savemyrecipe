@@ -15,8 +15,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         User::create(array( // demo
-        	'name' => 'Vasile Botoroga',
-            'slug' => 'vasilebotoroga',
+        	'name' => 'Mario Stronati',
+            'slug' => 'mariostronati',
         	'email' => 'user@example.com',
         	'password' => bcrypt('user'),
         ));
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
         ));
 
         User::create(array( // user3
-        	'name' => 'Gianni Rotonda',
+        	'name' => 'Mario Rotonda',
             'slug' => 'giannirotonda',
         	'email' => 'user3@example.com',
         	'password' => bcrypt('user3'),
