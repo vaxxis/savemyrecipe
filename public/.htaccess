@@ -4,7 +4,6 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /
 
     # Enable the `FollowSymLinks` option if it isn't already.
     # https://httpd.apache.org/docs/current/mod/core.html#options
@@ -27,7 +26,7 @@
 
 
 # Block access to the following file types, i.e. filename.type
-<FilesMatch "(^#.*#|.(bak|config|dist|txt|html|htm|eot|otf|ttc|ttf|woff|inc|ini|log|psd|sh|sql)|~)$">
+<FilesMatch "(^#.*#|.(bak|config|dist|txt|ini|log|psd|sh|sql)|~)$">
     Order allow,deny
     Deny from all
     Satisfy All
