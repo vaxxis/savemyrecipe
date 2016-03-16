@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Support\Facades\File;
 use App\Recipe;
 
 class RecipesTableSeeder extends Seeder
@@ -18,13 +19,11 @@ class RecipesTableSeeder extends Seeder
         DB::table('recipes')->delete();
         DB::table('ingredient_recipe')->delete();
 
-        // handle recipes photos
-        // if ($this->command->confirm("Delete all files from 'public/uploads/recipes' directory?", true)) {
-        //     $status = Storage::deleteDirectory('public/uploads/recipes', true);
-        //     Storage::put('public/uploads/recipes/.gitkeep', '');
-        //     $this->command->comment("Folder content deleted ({$status})");
-        //     $this->command->line("\n");
-        // }
+        // purge recipes photo
+        if ($this->command->confirm("Delete all files from 'public/uploads/recipes' directory?", true)) {
+            File::cleanDirectory('public/uploads/recipes');
+            File::put('public/uploads/recipes/.gitkeep', '');
+        }
         
         if ($this->command->confirm("Download recipe photos from internet? (recommended only for fast connections)")) {
             $downloadPhotosFromInternet = true;
