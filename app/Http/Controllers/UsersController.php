@@ -68,7 +68,14 @@ class UsersController extends Controller
             'password' =>   'sometimes|min:6|confirmed',
         ]);
 
-        $user->update($request->all());
+        if ($request->input('password')) {
+            $data = $request->all();
+            $data['password'] = bcrypt($request->input('password'));
+            $user->update($data);
+        }
+        else {
+            $user->update($request->all());
+        }
 
         Session::flash('flash_message', 'User has been updated!');
 
