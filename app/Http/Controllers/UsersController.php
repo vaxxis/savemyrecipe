@@ -35,8 +35,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         if (Auth::id() != $id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
+            abort(403);
         }
 
         $user = User::findOrFail($id);
@@ -55,8 +54,7 @@ class UsersController extends Controller
     public function update($id, Request $request)
     {
         if (Auth::id() != $id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
+            abort(403);
         }
 
         $user = User::findOrFail($id);
