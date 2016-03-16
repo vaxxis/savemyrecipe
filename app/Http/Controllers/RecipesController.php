@@ -108,11 +108,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('ingredients', 'user')->findOrFail($id);
 
-        // TODO: Move to middleware guard
-        if (Auth::id() != $recipe->user->id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
-        }
+        $this->authorize('edit', $recipe);
 
         $ingredientTypes = IngredientType::with('ingredients')->get();
 
@@ -137,11 +133,7 @@ class RecipesController extends Controller
         $recipe = Recipe::with('user')->findOrFail($id);
         $previousPhotoPath = $recipe->photo;
 
-        // TODO: Move to middleware guard
-        if (Auth::id() != $recipe->user->id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
-        }
+        $this->authorize('update', $recipe);
 
         // associate ingredients to recipe
         $ingredients = $request->input('ingredients') ? $request->input('ingredients') : [];
@@ -180,11 +172,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('user')->findOrFail($id);
 
-        // TODO: Move to middleware guard
-        if (Auth::id() != $recipe->user->id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
-        }
+        $this->authorize('destroy', $recipe);
 
         // delete previous image
         if (file_exists($recipe->photo) && is_file($recipe->photo)) {
@@ -202,11 +190,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::with('user')->findOrFail($id);
 
-        // TODO: Move to middleware guard
-        if (Auth::id() != $recipe->user->id) {
-            Session::flash('flash_error', 'Unauthorized action!');
-            return back();
-        }
+        $this->authorize('deletePhoto', $recipe);
 
         // delete previous image
         if (file_exists($recipe->photo) && is_file($recipe->photo)) {
