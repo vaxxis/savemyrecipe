@@ -45,11 +45,14 @@ $factory->define(App\Recipe::class, function (Faker\Generator $faker) {
 
     $user_id = App\User::lists('id')->random();
     $date = $faker->dateTimeThisMonth;
-    $photoProviderUrl = "http://lorempixel.com/300/300/food/" . rand(0,10);
+
+    $photoProviderUrl = null;
+    // $photoProviderUrl = "http://lorempixel.com/300/300/food/" . rand(0,10);
+    // $photoProviderUrl = $faker->boolean(50) ? $photoProviderUrl : null; // 50% chance
 
     return [
         'name'          => rtrim($faker->sentence(3), "."),
-        'photo'         => $faker->boolean(50) ? $photoProviderUrl : null, // 50% CHANCE,
+        'photo'         => $photoProviderUrl,
         'description'   => implode('<br><br>', $faker->paragraphs(3)),
         'level'         => array_rand(App\Recipe::levels()),
         'course'        => array_rand(App\Recipe::courses()),
