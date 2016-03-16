@@ -46,7 +46,7 @@ class RecipesTableSeeder extends Seeder
             }
 
             // download recipe photo (from unsplash API)
-            if ($downloadPhotosFromInternet && $this->boolean(3)) { // 5% chance of TRUE
+            if ($downloadPhotosFromInternet && $this->boolean(15)) { // 15% chance of TRUE
 
                 $url = 'https://source.unsplash.com/category/food/300x300';
                 $filepath = $this->downloadImage('public/uploads/recipes', $url);
