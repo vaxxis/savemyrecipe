@@ -51,4 +51,15 @@ $(document).ready(function(){
         });
 
     });
+
+
+
+    $("form input[type=submit]").click(function() {
+        var $btn = $(this);
+        $btn.button('loading');
+
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 5000);
+    });
 });

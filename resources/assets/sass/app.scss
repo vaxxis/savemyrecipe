@@ -15,12 +15,12 @@ body {
 }
 
 // Animate primary buttons
-.btn.btn-primary {
+.btn {
     transition: all .3s;
     transform: scale(1);
 }
-.btn.btn-primary.btn:active {
-    transform: scale(0.92);
+.btn:active {
+    transform: scale(0.94);
 }
 
 .section {

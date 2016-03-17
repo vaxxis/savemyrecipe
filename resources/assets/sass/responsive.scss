@@ -1,3 +1,15 @@
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: 80px;
+        padding-bottom: 60px;
+        margin-top: -30px;
+        margin-bottom: 0;
+    }
+    .container {
+        max-width: 960px!important;
+    }
+}
+
 @media (max-width: $screen-sm-max) {
     body {
         margin-bottom: 80px;
@@ -19,16 +31,16 @@
         font-size: 22px;
         margin-top: 10px;
     }
-}
-
-@media (min-width: 768px) {
-    .jumbotron {
-        padding-top: 80px;
-        padding-bottom: 60px;
-        margin-top: -30px;
-        margin-bottom: 0;
+    .jumbotron.home-header {
+        padding-top: 40px;
+        padding-bottom: 80px;
     }
-    .container {
-        max-width: 960px!important;
+    .section {
+        padding: 0!important;
+    }
+
+    .course {
+        padding: 0!important;
+        transform: scale(1);
     }
 }
