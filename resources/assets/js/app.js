@@ -60,6 +60,10 @@ $(document).ready(function(){
 
         setTimeout(function () {
             $btn.button('reset');
-        }, 5000);
+        }, 2000);
+    });
+
+    $("select").select2({
+        theme: "bootstrap"
     });
 });
