@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col-sm-8">
             {!! BootForm::text('name') !!}
+            {!! BootForm::hidden('is_private', false) !!}{{-- Needed for update --}}
             {!! BootForm::checkbox('is_private', 'Private (only you will see the recipe) &nbsp;<i class="icon ion-locked"></i>') !!}
             {!! BootForm::textarea('description', 'Description', null, ['class' => 'wysiwyg']) !!}
         </div>
