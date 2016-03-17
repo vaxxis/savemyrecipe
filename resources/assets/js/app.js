@@ -25,5 +25,30 @@ $(document).ready(function(){
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
-    })
+    });
+
+    // ask confirm on recipe delete
+    $('a.btn-ask-delete-confirm').on('click', function(event) {
+
+        var $link = $(this);
+        event.preventDefault();
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this recipe!",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Close",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = $link.attr('href');
+                $link.addClass('disabled');
+            } 
+        });
+
+    });
 });

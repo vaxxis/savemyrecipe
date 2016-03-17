@@ -181,7 +181,7 @@ class RecipesController extends Controller
 
         Recipe::destroy($id);
 
-        Session::flash('flash_message', 'Recipe deleted!');
+        Session::flash('flash_message', "Recipe <strong>#{$recipe->id} ({$recipe->name})</strong> deleted!");
 
         return redirect('recipes');
     }

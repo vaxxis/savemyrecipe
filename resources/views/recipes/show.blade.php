@@ -3,15 +3,20 @@
 @section('content.before')
 <div class="jumbotron">
     <div class="container">
-        <div class="clearfix">
 
-            @if ($recipe->photo)
-                <div class="thumbnail pull-left mr20">
-                    <img width="160" class="img-rounded" src="{{ url($recipe->photo) }}" alt="{{$recipe->name}}" />
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-3">
+                <div class="thumbnail">
+                    @if ($recipe->photo)
+                        <img class="img-responsive img-rounded m0" src="{{ url($recipe->photo) }}" alt="{{$recipe->name}}" />
+                    @else
+                        <img class="img-responsive img-rounded m0" src="{{ asset('images/placeholder.png') }}" alt="Placeholder" />
+                    @endif
                 </div>
-            @endif
+            </div>
 
-            <div class="pull-left">
+            <div class="col-xs-12 col-sm-7">
                 <h2 class="m0 mt20">
                     @if ($recipe->is_private)
                         <i class="icon ion-locked"></i>
@@ -24,16 +29,16 @@
                 </div>
             </div>
 
-            <div class="pull-right">
+            <div class="col-xs-12 col-sm-2 col-md-5">
                 @can('edit', $recipe)
-                    <a class="btn btn-info" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
-                        <i class="icon ion-edit"></i>
+                    <a class="btn btn-info mt10" href="{{ url('recipes/'. $recipe->id .'/edit') }}">
+                        <i class="icon ion-compose"></i>
                         Edit
                     </a>
                 @endcan
 
                 @can('destroy', $recipe)
-                    <a class="btn btn-danger" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
+                    <a class="btn btn-danger mt10 btn-ask-delete-confirm" href="{{ url('recipes/'. $recipe->id .'/delete') }}">
                         <i class="icon ion-trash-a"></i>
                         Delete
                     </a>

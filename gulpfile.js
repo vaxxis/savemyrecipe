@@ -20,6 +20,7 @@ elixir(function(mix) {
     .scripts([
         './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './node_modules/summernote/dist/summernote.min.js',
+        './node_modules/sweetalert/dist/sweetalert.min.js',
     ], './public/js/libs.js')
 
     .scripts([
@@ -29,6 +30,7 @@ elixir(function(mix) {
     .styles([
         './node_modules/ionicons/css/ionicons.min.css',
         './node_modules/summernote/dist/summernote.css',
+        './node_modules/sweetalert/dist/sweetalert.css',
     ], './public/css/libs.css')
 
     .copy('./node_modules/ionicons/fonts', './public/fonts')

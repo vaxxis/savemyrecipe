@@ -87,21 +87,21 @@
 		{{-- print FLASH MESSAGES --}}
 		@if ($message = Session::get('flash_message'))
 			<div class="alert alert-success">
-				{{ $message }}
+				{!! $message !!}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 		@endif
 
 		@if ($message = Session::get('flash_error'))
 			<div class="alert alert-danger">
-				{{ $message }}
+				{!! $message !!}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 		@endif
 
 		@if ($message = Session::get('flash_warning'))
 			<div class="alert alert-warning">
-				{{ $message }}
+				{!! $message !!}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 		@endif
