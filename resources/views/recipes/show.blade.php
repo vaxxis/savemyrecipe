@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-sm-3">
                 <div class="thumbnail">
                     @if ($recipe->photo)
-                        <img class="img-responsive img-rounded m0" src="{{ url($recipe->photo) }}" alt="{{$recipe->name}}" />
+                        <img class="img-responsive img-rounded m0" src="{{ url($recipe->photo) }}" alt="{{$recipe->name}}" data-action="zoom" />
                     @else
                         <img class="img-responsive img-rounded m0" src="{{ asset('images/placeholder.png') }}" alt="Placeholder" />
                     @endif

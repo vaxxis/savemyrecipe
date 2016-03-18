@@ -24,6 +24,7 @@ elixir(function(mix) {
         './node_modules/sweetalert/dist/sweetalert.min.js',
         './node_modules/select2/dist/js/select2.min.js',
         './node_modules/select2/dist/js/i18n/en.js',
+        './resources/assets/vendors/zoom/zoom.min.js',
     ], './public/js/libs.js')
 
     .scripts([
@@ -36,6 +37,7 @@ elixir(function(mix) {
         './node_modules/sweetalert/dist/sweetalert.css',
         './node_modules/select2/dist/css/select2.min.css',
         './public/css/select2-bootstrap.css',
+        './resources/assets/vendors/zoom/zoom.css',
     ], './public/css/libs.css')
 
     .copy('./node_modules/ionicons/fonts', './public/fonts')

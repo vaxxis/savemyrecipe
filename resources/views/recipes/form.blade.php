@@ -10,7 +10,7 @@
             {!! BootForm::file('photo', 'Recipe Picture') !!}
             @if ($pic = $recipe->photo)
                 <div class="thumbnail mt0">
-                    <img class="img-responsive" src="{{ url($pic) }}" alt="{{ $recipe->name }}" />
+                    <img class="img-responsive" src="{{ url($pic) }}" alt="{{ $recipe->name }}" data-action="zoom" />
                     <a class="btn btn-default btn-sm btn-absolute-top-right" href="{{ route('delete.recipe.photo', $recipe->id) }}"><i class="icon ion-trash-a"></i> delete</a>
                 </div>
             @endif
