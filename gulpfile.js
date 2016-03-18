@@ -16,11 +16,14 @@ elixir(function(mix) {
     mix
 
     .sass('app.scss')
+    .sass('select2-bootstrap.scss')
 
     .scripts([
         './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './node_modules/summernote/dist/summernote.min.js',
         './node_modules/sweetalert/dist/sweetalert.min.js',
+        './node_modules/select2/dist/js/select2.min.js',
+        './node_modules/select2/dist/js/i18n/en.js',
     ], './public/js/libs.js')
 
     .scripts([
@@ -31,6 +34,8 @@ elixir(function(mix) {
         './node_modules/ionicons/css/ionicons.min.css',
         './node_modules/summernote/dist/summernote.css',
         './node_modules/sweetalert/dist/sweetalert.css',
+        './node_modules/select2/dist/css/select2.min.css',
+        './public/css/select2-bootstrap.css',
     ], './public/css/libs.css')
 
     .copy('./node_modules/ionicons/fonts', './public/fonts')

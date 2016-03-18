@@ -8,7 +8,7 @@ $(document).ready(function(){
     $('.wysiwyg').summernote({
         placeholder: 'Write here...',
         dialogsFade: true,
-        height: 250,
+        height: 340,
         disableDragAndDrop: true,
         toolbar: [
             // [groupName, [list of button]]
@@ -60,6 +60,11 @@ $(document).ready(function(){
 
         setTimeout(function () {
             $btn.button('reset');
-        }, 5000);
+        }, 2000);
+    });
+
+    $("select:not(.no-select2)").select2({
+        theme: "bootstrap",
+        minimumResultsForSearch: 6
     });
 });

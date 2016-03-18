@@ -34,6 +34,20 @@ class Ingredient extends Model
         return $this->belongsTo(IngredientType::class);
     }
 
+    public static function ingredientsMultiSelect()
+    {
+        $options = [];
+        $results = IngredientType::with('ingredients')->get(['id', 'name']);
+
+        foreach ($results as $ingType) {
+            foreach ($ingType->ingredients as $ing) {
+                $options[$ingType->name][$ing->id] = $ing->name;
+            }
+        }
+
+        return $options;
+    }
+
     public function __toString()
     {
         return $this->name;

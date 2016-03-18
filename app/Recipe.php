@@ -133,8 +133,8 @@ class Recipe extends Model implements SluggableInterface
         return [
             'appetizers'    => 'Appetizers',
             'starters'      => 'Starters',
-            'main-courses'  => 'Main courses',
-            'side-dishes'   => 'Side dishes',
+            'main-courses'  => 'Main Courses',
+            'side-dishes'   => 'Side Dishes',
             'desserts'      => 'Desserts',
             'drinks'        => 'Drinks',
         ];
