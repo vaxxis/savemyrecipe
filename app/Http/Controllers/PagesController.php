@@ -18,8 +18,26 @@ class PagesController extends Controller
      */
     public function index()
     {
+        return view('pages.home');
+    }
+
+    public function searchPublicRecipes(Request $request)
+    {
+        $term = $request->input('term');
+
+        $recipes = Recipe::with('user', 'ingredients')
+                         ->where('name', 'LIKE', "%{$term}%")
+                         ->orWhere('description', 'LIKE', "%{$term}%")
+                         ->paginate(10);
+
+        return view('pages.recipes', compact('recipes', 'term'));
+    }
+
+    public function showPublicRecipes()
+    {
         $recipes = Recipe::getPublished();
-        return view('pages.home', compact('recipes'));
+
+        return view('pages.recipes', compact('recipes'));
     }
 
     public function filterByCourse($course)
@@ -34,13 +52,6 @@ class PagesController extends Controller
         $recipe->load('ingredients', 'user');
 
         return view('recipes.show', compact('recipe'));
-    }
-
-    public function showPublicRecipes()
-    {
-        $recipes = Recipe::getPublished();
-
-        return view('pages.recipes', compact('recipes'));
     }
 
     public function showUser($slug)

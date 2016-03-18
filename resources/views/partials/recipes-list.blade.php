@@ -16,7 +16,7 @@
                 @if ($recipe->is_private)
                     <i class="icon ion-locked" data-toggle="tooltip" data-placement="top" title="Only you can see this recipe"></i>
                 @endif
-                <a href="{{ url('r/' . $recipe->slug) }}">{{ $recipe->name }}</a>
+                <a href="{{ url('recipe/' . $recipe->slug) }}">{{ $recipe->name }}</a>
             </h3>
 
             <p>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="hidden-xs col-sm-4">
-            
+
             <div class="mt30 text-right">
                 @can('edit', $recipe)
                     <!-- Edit Recipe Button -->

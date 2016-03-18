@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_flat-purple',
-        radioClass: 'iradio_flat-purple'
-    });
+
+    // $('input').iCheck({
+    //     checkboxClass: 'icheckbox_flat-purple',
+    //     radioClass: 'iradio_flat-purple'
+    // });
 
     // enable wysiwyg editor
     $('.wysiwyg').summernote({
@@ -47,7 +48,7 @@ $(document).ready(function(){
             if (isConfirm) {
                 window.location = $link.attr('href');
                 $link.addClass('disabled');
-            } 
+            }
         });
 
     });
@@ -63,7 +64,7 @@ $(document).ready(function(){
         }, 2000);
     });
 
-    $("select:not(.no-select2)").select2({
+    $(".page-content select:not(.no-select2)").select2({
         theme: "bootstrap",
         minimumResultsForSearch: 6
     });
