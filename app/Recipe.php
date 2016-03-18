@@ -67,7 +67,7 @@ class Recipe extends Model implements SluggableInterface
 
         // Scopes let you set rules for all Eloquent request
         static::addGlobalScope('is_private', function(Builder $builder) {
-            $builder->orderBy('is_private', 0);
+            $builder->where('is_private', 0);
         });
         static::addGlobalScope('created_at', function(Builder $builder) {
             $builder->orderBy('created_at', 'desc');
