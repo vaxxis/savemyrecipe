@@ -34,7 +34,7 @@ class RecipesController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::getUserRecipes(Auth::id());
+        $recipes = Recipe::getAllUserRecipes(Auth::id());
 
         return view('recipes.index', compact('recipes'));
     }

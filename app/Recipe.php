@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
+
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Image;
+
 
 class Recipe extends Model implements SluggableInterface
 {
@@ -50,6 +53,27 @@ class Recipe extends Model implements SluggableInterface
      */
     protected static $uploadPath = 'uploads/recipes';
 
+
+
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Scopes let you set rules for all Eloquent request
+        static::addGlobalScope('is_private', function(Builder $builder) {
+            $builder->orderBy('is_private', 0);
+        });
+        static::addGlobalScope('created_at', function(Builder $builder) {
+            $builder->orderBy('created_at', 'desc');
+        });
+    }
+
     /**
      * The ingredients that belong to the recipe.
      */
@@ -69,16 +93,12 @@ class Recipe extends Model implements SluggableInterface
     public static function getPublished($user = null)
     {
         return static::with('user', 'ingredients')
-               ->where('is_private', 0)
-               ->orderBy('created_at', 'desc')
                ->paginate(10);
     }
 
     public static function getPublishedByCourse($course)
     {
         return static::with('user', 'ingredients')
-               ->where('is_private', 0)
-               ->orderBy('created_at', 'desc')
                ->where('course', $course)
                ->paginate(10);
     }
@@ -86,17 +106,15 @@ class Recipe extends Model implements SluggableInterface
     public static function getPublishedByUser($user_id)
     {
         return static::with('user', 'ingredients')
-               ->where('is_private', 0)
-               ->orderBy('created_at', 'desc')
                ->where('user_id', $user_id)
                ->paginate(10);
     }
 
-    public static function getUserRecipes($user_id)
+    public static function getAllUserRecipes($user_id)
     {
-        return static::with('user', 'ingredients')
+        return static::withoutGlobalScope('is_private')
+               ->with('user', 'ingredients')
                ->where('user_id', $user_id)
-               ->orderBy('created_at', 'desc')
                ->paginate(10);
     }
 
