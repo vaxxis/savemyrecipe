@@ -190,7 +190,8 @@ $clear-selection-color: $dropdown-arrow-color !default;
         }
 
         .select2-results__option {
-            padding: $padding-base-vertical $padding-base-horizontal;
+            // padding: $padding-base-vertical $padding-base-horizontal;
+            padding: $padding-small-vertical $padding-base-horizontal*2;
 
             .select2-results__group {
                 padding-left: 0;
@@ -198,23 +199,23 @@ $clear-selection-color: $dropdown-arrow-color !default;
 
             .select2-results__option {
                 margin-left: -$padding-base-horizontal;
-                padding-left: $padding-base-horizontal*2;
+                padding-left: $padding-base-horizontal*3;
 
                 .select2-results__option {
                     margin-left: -$padding-base-horizontal*2;
-                    padding-left: $padding-base-horizontal*3;
+                    padding-left: $padding-base-horizontal*4;
 
                     .select2-results__option {
                         margin-left: -$padding-base-horizontal*3;
-                        padding-left: $padding-base-horizontal*4;
+                        padding-left: $padding-base-horizontal*5;
 
                         .select2-results__option {
                             margin-left: -$padding-base-horizontal*4;
-                            padding-left: $padding-base-horizontal*5;
+                            padding-left: $padding-base-horizontal*6;
 
                             .select2-results__option {
                                 margin-left: -$padding-base-horizontal*5;
-                                padding-left: $padding-base-horizontal*6;
+                                padding-left: $padding-base-horizontal*7;
                             }
                         }
                     }
@@ -224,10 +225,11 @@ $clear-selection-color: $dropdown-arrow-color !default;
     }
 
     .select2-results__group {
-        color: $dropdown-header-color;
+        // color: $dropdown-header-color;
         display: block;
-        padding: $padding-base-vertical $padding-base-horizontal;
-        font-size: $font-size-small;
+        // padding: $padding-base-vertical $padding-base-horizontal;
+        padding: $padding-small-vertical $padding-base-horizontal;
+        font-size: $font-size-base;
         line-height: $line-height-base;
         white-space: nowrap;
     }

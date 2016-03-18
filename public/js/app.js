@@ -1,1 +1,72 @@
-$(document).ready(function(){$("input").iCheck({checkboxClass:"icheckbox_flat-purple",radioClass:"iradio_flat-purple"}),$(".wysiwyg").summernote({placeholder:"Write here...",dialogsFade:!0,height:250,disableDragAndDrop:!0,toolbar:[["style",["bold","italic","underline","strikethrough"]],["para",["ul","ol","paragraph"]],["misc1",["link"]],["misc2",["undo","redo"]],["misc3",["fullscreen","codeview"]],["misc4",["help"]]]}),$(function(){$('[data-toggle="tooltip"]').tooltip(),$('[data-toggle="popover"]').popover()}),$("a.btn-ask-delete-confirm").on("click",function(e){var t=$(this);e.preventDefault(),swal({title:"Are you sure?",text:"You will not be able to recover this recipe!",type:"warning",showCancelButton:!0,cancelButtonText:"Close",confirmButtonColor:"#DD6B55",confirmButtonText:"Yes, delete it!",closeOnConfirm:!0},function(e){e&&(window.location=t.attr("href"),t.addClass("disabled"))})}),$("form input[type=submit]").click(function(){var e=$(this);e.button("loading"),setTimeout(function(){e.button("reset")},2e3)}),$("select").select2({theme:"bootstrap"})});
+$(document).ready(function(){
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-purple',
+        radioClass: 'iradio_flat-purple'
+    });
+
+    // enable wysiwyg editor
+    $('.wysiwyg').summernote({
+        placeholder: 'Write here...',
+        dialogsFade: true,
+        height: 340,
+        disableDragAndDrop: true,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'strikethrough']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['misc1', ['link']],
+            ['misc2', ['undo', 'redo']],
+            ['misc3', ['fullscreen', 'codeview']],
+            ['misc4', ['help']]
+        ]
+    });
+
+    // enable bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover();
+    });
+
+    // ask confirm on recipe delete
+    $('a.btn-ask-delete-confirm').on('click', function(event) {
+
+        var $link = $(this);
+        event.preventDefault();
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this recipe!",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Close",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true
+        },
+        function(isConfirm) {
+            if (isConfirm) {
+                window.location = $link.attr('href');
+                $link.addClass('disabled');
+            } 
+        });
+
+    });
+
+
+
+    $("form input[type=submit]").click(function() {
+        var $btn = $(this);
+        $btn.button('loading');
+
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 2000);
+    });
+
+    $("select:not(.no-select2)").select2({
+        theme: "bootstrap",
+        minimumResultsForSearch: 6
+    });
+});
+
+//# sourceMappingURL=app.js.map
