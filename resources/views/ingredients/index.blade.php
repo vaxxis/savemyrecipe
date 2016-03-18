@@ -37,7 +37,7 @@
                             {{ $ingredient->name }}
                             <small class="text-muted">({{ $ingredient->ingredienttype }})</small>
 
-                            <a class="btn btn-default btn-sm pull-right" href="{{ url('ingredients/'.$ingredient->id.'/delete') }}">
+                            <a class="btn btn-default btn-sm btn-ask-delete-confirm pull-right" href="{{ url('ingredients/'.$ingredient->id.'/delete') }}">
                                 <span class="icon ion-trash-a text-danger"></span> delete
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                     @foreach (App\IngredientType::orderBy('name')->get() as $type)
                         <div>
                             {{ $type }}
-                            <a class="btn btn-default btn-sm pull-right" href="{{ url('ingredienttypes/'.$type->id.'/delete') }}">
+                            <a class="btn btn-default btn-sm btn-ask-delete-confirm pull-right" href="{{ url('ingredienttypes/'.$type->id.'/delete') }}">
                                 <span class="icon ion-trash-a text-danger"></span> delete
                             </a>
                         </div>
@@ -87,7 +87,7 @@
                     <h3 class="modal-title">Create New  Ingredient</h3>
                 </div>
                 <div class="modal-body">
-                @include('ingredients.form')
+                    @include('ingredients.form')
                 </div>
             </div>
         </div>

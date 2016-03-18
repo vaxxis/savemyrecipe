@@ -67,9 +67,9 @@ class IngredientTypesController extends Controller
     {
         $this->validate($request, ['name' => 'required|max:255|unique:ingredient_types']);
 
-        IngredientType::create($request->all());
+        $ingredientType = IngredientType::create($request->all());
 
-        Session::flash('flash_message', 'IngredientType added!');
+        Session::flash('flash_message', "IngredientType <strong>{$ingredientType->name}</strong> added!");
 
         return redirect('ingredients');
     }
@@ -111,13 +111,13 @@ class IngredientTypesController extends Controller
      */
     public function update($id, Request $request)
     {
-        $ingredienttype = IngredientType::findOrFail($id);
+        $ingredientType = IngredientType::findOrFail($id);
 
         $this->validate($request, ['name' => 'required|max:255|unique:ingredient_types']);
 
-        $ingredienttype->update($request->all());
+        $ingredientType->update($request->all());
 
-        Session::flash('flash_message', 'IngredientType updated!');
+        Session::flash('flash_message', "IngredientType <strong>{$ingredientType->name}</strong> updated!");
 
         return redirect('ingredienttypes');
     }
@@ -131,9 +131,11 @@ class IngredientTypesController extends Controller
      */
     public function destroy($id)
     {
+        $ingredientType = IngredientType::findOrFail($id);
+
         IngredientType::destroy($id);
 
-        Session::flash('flash_message', 'IngredientType deleted!');
+        Session::flash('flash_message', "IngredientType <strong>{$ingredientType->name}</strong> deleted!");
 
         return redirect('ingredients');
     }

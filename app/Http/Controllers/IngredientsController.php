@@ -59,9 +59,9 @@ class IngredientsController extends Controller
     {
         $this->validate($request, ['name' => 'required|max:255|unique:ingredients']);
 
-        Ingredient::create($request->all());
+        $ingredient = Ingredient::create($request->all());
 
-        Session::flash('flash_message', 'Ingredient added!');
+        Session::flash('flash_message', "Ingredient <strong>{$ingredient->name}</strong> added!");
 
         return redirect('ingredients');
     }
@@ -109,7 +109,7 @@ class IngredientsController extends Controller
 
         $ingredient->update($request->all());
 
-        Session::flash('flash_message', 'Ingredient updated!');
+        Session::flash('flash_message', "Ingredient <strong>{$ingredient->name}</strong> updated!");
 
         return redirect('ingredients');
     }
@@ -123,9 +123,11 @@ class IngredientsController extends Controller
      */
     public function destroy($id)
     {
+        $ingredient = Ingredient::findOrFail($id);
+
         Ingredient::destroy($id);
 
-        Session::flash('flash_message', 'Ingredient deleted!');
+        Session::flash('flash_message', "Ingredient <strong>{$ingredient->name}</strong> deleted!");
 
         return redirect('ingredients');
     }

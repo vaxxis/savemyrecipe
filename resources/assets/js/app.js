@@ -36,7 +36,7 @@ $(document).ready(function(){
 
         swal({
             title: "Are you sure?",
-            text: "You will not be able to recover this recipe!",
+            text: "You will not be able to recover it!",
             type: "warning",
             showCancelButton: true,
             cancelButtonText: "Close",

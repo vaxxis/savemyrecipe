@@ -155,8 +155,7 @@ class RecipesController extends Controller
 
         $recipe->update($data);
 
-
-        Session::flash('flash_message', 'Recipe updated!');
+        Session::flash('flash_message', "Recipe <strong>#{$recipe->id} - {$recipe->name}</strong> updated!");
 
         return redirect('recipes');
     }
@@ -181,7 +180,7 @@ class RecipesController extends Controller
 
         Recipe::destroy($id);
 
-        Session::flash('flash_message', "Recipe <strong>#{$recipe->id} ({$recipe->name})</strong> deleted!");
+        Session::flash('flash_message', "Recipe <strong>#{$recipe->id} {$recipe->name}</strong> deleted!");
 
         return redirect('recipes');
     }
