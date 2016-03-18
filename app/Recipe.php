@@ -66,9 +66,6 @@ class Recipe extends Model implements SluggableInterface
         parent::boot();
 
         // Scopes let you set rules for all Eloquent request
-        static::addGlobalScope('is_private', function(Builder $builder) {
-            $builder->orderBy('is_private', 0);
-        });
         static::addGlobalScope('created_at', function(Builder $builder) {
             $builder->orderBy('created_at', 'desc');
         });
@@ -93,6 +90,7 @@ class Recipe extends Model implements SluggableInterface
     public static function getPublished($user = null)
     {
         return static::with('user', 'ingredients')
+               ->where('is_private', 0)
                ->paginate(10);
     }
 
@@ -100,6 +98,7 @@ class Recipe extends Model implements SluggableInterface
     {
         return static::with('user', 'ingredients')
                ->where('course', $course)
+               ->where('is_private', 0)
                ->paginate(10);
     }
 
@@ -107,13 +106,13 @@ class Recipe extends Model implements SluggableInterface
     {
         return static::with('user', 'ingredients')
                ->where('user_id', $user_id)
+               ->where('is_private', 0)
                ->paginate(10);
     }
 
     public static function getAllUserRecipes($user_id)
     {
-        return static::withoutGlobalScope('is_private')
-               ->with('user', 'ingredients')
+        return static::with('user', 'ingredients')
                ->where('user_id', $user_id)
                ->paginate(10);
     }
