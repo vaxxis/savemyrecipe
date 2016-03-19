@@ -5,8 +5,10 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
+    "icheck": "^1.0.2",
     "ionicons": "^2.0.0",
     "laravel-elixir": "^4.0.0",
+    "masonry-layout": "^4.0.0",
     "select2": "^4.0.2",
     "summernote": "^0.8.1",
     "sweetalert": "^1.1.3"

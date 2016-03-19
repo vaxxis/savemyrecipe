@@ -184,3 +184,25 @@ body {
 .readable {
     font-size: 18px;
 }
+
+
+.input-searchbox {
+    position: relative;
+    .btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 32px;
+        height: 32px;
+        line-height: 16px;
+        padding: 0;
+        font-size: 21px;
+        border: 0;
+        color: #ccc;
+        &:hover,
+        &:focus {
+            background-color: $brand-primary;
+            color: white;
+        }
+    }
+}

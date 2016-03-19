@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-    // $('input').iCheck({
-    //     checkboxClass: 'icheckbox_flat-purple',
-    //     radioClass: 'iradio_flat-purple'
-    // });
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_flat-purple',
+        radioClass: 'iradio_flat-purple'
+    });
 
     // enable wysiwyg editor
     $('.wysiwyg').summernote({
@@ -54,6 +54,10 @@ $(document).ready(function(){
     });
 
 
+    // enable masonry grid
+    $('.masonry-grid').masonry({
+        itemSelector: '.masonry-item'
+    });
 
     $("form input[type=submit]").click(function() {
         var $btn = $(this);

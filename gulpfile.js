@@ -25,6 +25,8 @@ elixir(function(mix) {
         './node_modules/select2/dist/js/select2.min.js',
         './node_modules/select2/dist/js/i18n/en.js',
         './resources/assets/vendors/zoom/zoom.min.js',
+        './node_modules/icheck/icheck.min.js',
+        './node_modules/masonry/masonry.pkgd.min.js',
     ], './public/js/libs.js')
 
     .scripts([
@@ -38,11 +40,14 @@ elixir(function(mix) {
         './node_modules/select2/dist/css/select2.min.css',
         './public/css/select2-bootstrap.css',
         './resources/assets/vendors/zoom/zoom.css',
+        './node_modules/icheck/skins/flat/purple.css',
     ], './public/css/libs.css')
 
     .copy('./node_modules/ionicons/fonts', './public/fonts')
     .copy('./node_modules/summernote/dist/font', './public/css/font')
 
+    .copy('./node_modules/icheck/skins/flat/purple@2x.png', './public/css')
+    .copy('./node_modules/icheck/skins/flat/purple.png', './public/css')
     .copy('./resources/assets/images', './public/images')
 
     // .version([

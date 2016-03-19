@@ -191,7 +191,7 @@ $clear-selection-color: $dropdown-arrow-color !default;
 
         .select2-results__option {
             // padding: $padding-base-vertical $padding-base-horizontal;
-            padding: $padding-small-vertical $padding-base-horizontal*2;
+            padding: $padding-xs-vertical $padding-base-horizontal*2;
 
             .select2-results__group {
                 padding-left: 0;
@@ -228,7 +228,7 @@ $clear-selection-color: $dropdown-arrow-color !default;
         // color: $dropdown-header-color;
         display: block;
         // padding: $padding-base-vertical $padding-base-horizontal;
-        padding: $padding-small-vertical $padding-base-horizontal;
+        padding: $padding-xs-vertical $padding-base-horizontal;
         font-size: $font-size-base;
         line-height: $line-height-base;
         white-space: nowrap;
