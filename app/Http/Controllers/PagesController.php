@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
+use Auth;
 use App\User;
 use App\Recipe;
 
@@ -49,6 +50,11 @@ class PagesController extends Controller
     public function showRecipe($slug)
     {
         $recipe = Recipe::findBySlugOrIdOrFail($slug);
+
+        if (Auth::id() != $recipe->user_id) {
+            return redirect('/');
+        }
+
         $recipe->load('ingredients', 'user');
 
         return view('recipes.show', compact('recipe'));
