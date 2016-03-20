@@ -23,7 +23,7 @@ class PagesController extends Controller
 
     public function searchPublicRecipes(Request $request)
     {
-        $term = $request->input('term');
+        $term = $request->input('s');
 
         $recipes = Recipe::with('user', 'ingredients')
                          ->where('name', 'LIKE', "%{$term}%")

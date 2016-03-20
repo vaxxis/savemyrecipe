@@ -9,8 +9,13 @@
 
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,300,400italic,700,700italic,100' rel='stylesheet' type='text/css'>
 
-	<link href="{{ asset('css/libs.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@if (env('APP_ENV') != 'local')
+		<link href="{{ elixir('css/libs.css') }}" rel="stylesheet">
+		<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+	@else
+		<link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@endif
 
 	@include('partials.favicons')
 
@@ -120,8 +125,13 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 
-	<script src="{{ asset('js/libs.js') }}"></script>
-	<script src="{{ asset('js/app.js') }}"></script>
+	@if (env('APP_ENV') != 'local')
+		<script src="{{ elixir('js/libs.js') }}"></script>
+		<script src="{{ elixir('js/app.js') }}"></script>
+	@else
+		<script src="{{ asset('js/libs.js') }}"></script>
+		<script src="{{ asset('js/app.js') }}"></script>
+	@endif
 
 
 </body>

@@ -43,4 +43,18 @@
         padding: 0!important;
         transform: scale(1);
     }
+
+
+    // style courses button groups
+    .btn-group>.btn {
+        width: 50%;
+        margin-bottom: 3px;
+        border-radius: 0;
+    }
+    .btn-group>.btn:first-child {
+        width: 100%;
+    }
+    .searchbox {
+        margin-top: 20px;
+    }
 }

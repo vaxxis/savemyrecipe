@@ -30,10 +30,10 @@
         Select Ingredients
     </h2>
     <hr>
-    <div class="row masonry-grid">
+    <div class="row">
         @foreach ($ingredientTypes as $item)
 
-            <div class="col-sm-4 masonry-grid-item">
+            <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h4>{{ $item->name }}</h4></div>
                     <div class="panel-body">

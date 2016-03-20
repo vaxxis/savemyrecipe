@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="hidden-xs hidden-sm col-md-3">
+    <div class="col-xs-12 hidden-sm col-md-3">
         @include('partials.searchform')
     </div>
 

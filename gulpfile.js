@@ -26,7 +26,7 @@ elixir(function(mix) {
         './node_modules/select2/dist/js/i18n/en.js',
         './resources/assets/vendors/zoom/zoom.min.js',
         './node_modules/icheck/icheck.min.js',
-        './node_modules/masonry/masonry.pkgd.min.js',
+        // './node_modules/masonry-layout/dist/masonry.pkgd.min.js',
     ], './public/js/libs.js')
 
     .scripts([
@@ -43,18 +43,25 @@ elixir(function(mix) {
         './node_modules/icheck/skins/flat/purple.css',
     ], './public/css/libs.css')
 
+
     .copy('./node_modules/ionicons/fonts', './public/fonts')
     .copy('./node_modules/summernote/dist/font', './public/css/font')
-
     .copy('./node_modules/icheck/skins/flat/purple@2x.png', './public/css')
     .copy('./node_modules/icheck/skins/flat/purple.png', './public/css')
     .copy('./resources/assets/images', './public/images')
 
-    // .version([
-    //     'css/app.css',
-    //     'css/libs.css',
-    //
-    //     'js/app.js',
-    //     'js/libs.js'
-    // ])
+    // Copy missing files in build folder
+    .copy('./node_modules/summernote/dist/font', './public/build/css/font')
+    .copy('./node_modules/summernote/dist/font', './public/build/css/font')
+    .copy('./node_modules/icheck/skins/flat/purple@2x.png', './public/build/css')
+    .copy('./node_modules/icheck/skins/flat/purple.png', './public/build/css')
+
+
+    .version([
+        'css/app.css',
+        'css/libs.css',
+
+        'js/app.js',
+        'js/libs.js'
+    ])
 });

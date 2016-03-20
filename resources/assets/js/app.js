@@ -55,9 +55,9 @@ $(document).ready(function(){
 
 
     // enable masonry grid
-    $('.masonry-grid').masonry({
-        itemSelector: '.masonry-item'
-    });
+    // $('.masonry-grid').masonry({
+    //     itemSelector: '.masonry-item'
+    // });
 
     $("form input[type=submit]").click(function() {
         var $btn = $(this);

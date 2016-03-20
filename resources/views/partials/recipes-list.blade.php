@@ -1,3 +1,11 @@
+@if ($recipes->count() == 0)
+    <div class="well well-lg">
+        <p class="lead text-center m0 m50">
+            No results found.
+        </p>
+    </div>
+@endif
+
 @foreach ($recipes as $recipe)
 
     <div class="recipe row">
