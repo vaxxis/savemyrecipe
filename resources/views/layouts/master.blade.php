@@ -53,7 +53,7 @@
 
 					@if (Auth::user())
 
-						<li><a href="{{ url('/recipes') }}"><span class="icon ion-clipboard"></span> CookBook</a></li>
+						<li><a href="{{ url('/recipes') }}"><span class="icon ion-ios-bookmarks"></span> CookBook</a></li>
 						<li><a href="{{ url('/ingredients') }}"><span class="icon ion-ios-nutrition"></span> Ingredients</a></li>
 
 						<li class="dropdown">

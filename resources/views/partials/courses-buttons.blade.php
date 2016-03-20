@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row courses-buttons">
 
     <!-- Courses buttons -->
     <div class="col-sm-12 col-md-9">

@@ -7,10 +7,10 @@
             {!! BootForm::checkbox('is_private', 'Private <i class="icon ion-locked"></i> <span class="text-muted italic light">(Only you will see the recipe)</span>') !!}
             {!! BootForm::textarea('description', 'Description', null, ['class' => 'wysiwyg']) !!}
 
-            {{--
-                Ingredients Select2 Implementation
+            <div class="well pt30">
+                <p class="lead">Select recipe ingredients</p>
                 {!! BootForm::select('ingredients[]', 'Ingredients', App\Ingredient::ingredientsMultiSelect(), $recipe->ingredients->lists('id')->toArray(), ['multiple']) !!}
-            --}}
+            </div>
         </div>
         <div class="col-sm-4">
             {!! BootForm::file('photo', 'Recipe Picture') !!}
@@ -26,6 +26,7 @@
         </div>
     </div>
 
+{{--
     <h2 class="mt40">
         Select Ingredients
     </h2>
@@ -46,6 +47,7 @@
 
         @endforeach
     </div>
+--}}
 
     <hr>
     <div class="form-group">
