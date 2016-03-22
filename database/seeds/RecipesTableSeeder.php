@@ -31,7 +31,7 @@ class RecipesTableSeeder extends Seeder
 
         $ingredients = App\Ingredient::lists('id');
 
-        $COUNT = 200;
+        $COUNT = 400;
         $progressBar = $this->command->getOutput()->createProgressBar($COUNT);
 
         factory(Recipe::class, $COUNT)->create()->each(function($recipe) use($ingredients, $downloadPhotosFromInternet, $progressBar) {
@@ -46,7 +46,7 @@ class RecipesTableSeeder extends Seeder
             }
 
             // download recipe photo (from unsplash API)
-            if ($downloadPhotosFromInternet && $this->boolean(35)) { // 15% chance of TRUE
+            if ($downloadPhotosFromInternet && $this->boolean(45)) { // 15% chance of TRUE
 
                 $url = 'https://source.unsplash.com/category/food/300x300';
                 $filepath = $this->downloadImage('public/uploads/recipes', $url);
