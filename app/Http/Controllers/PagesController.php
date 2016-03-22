@@ -51,7 +51,7 @@ class PagesController extends Controller
     {
         $recipe = Recipe::findBySlugOrIdOrFail($slug);
 
-        if (Auth::user() && Auth::id() != $recipe->user_id) {
+        if ($recipe->is_private && Auth::user() && Auth::id() != $recipe->user_id) {
             return redirect('/');
         }
 
