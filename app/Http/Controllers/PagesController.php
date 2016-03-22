@@ -27,8 +27,9 @@ class PagesController extends Controller
         $term = $request->input('s');
 
         $recipes = Recipe::with('user', 'ingredients')
+                         ->where('is_private', 0)
                          ->where('name', 'LIKE', "%{$term}%")
-                         ->orWhere('description', 'LIKE', "%{$term}%")
+                         // ->orWhere('description', 'LIKE', "%{$term}%")
                          ->paginate(10);
 
         return view('pages.recipes', compact('recipes', 'term'));
