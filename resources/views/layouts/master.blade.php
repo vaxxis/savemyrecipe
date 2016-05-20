@@ -118,7 +118,12 @@
 
 	<footer class="footer">
 		<div class="container text-muted">
-			&copy; {{ date('Y') }}. Created by <a href="http://vassi.it">Vasile Botoroga</a>
+			<div class="pull-left">
+				&copy; {{ date('Y') }}. Created by <a href="http://vassi.it">Vasile Botoroga</a>
+			</div>
+			<div class="pull-right">
+				This project is just a demo, <a target="blank" href="https://github.com/vassix/savemyrecipe">source code on <i class="icon ion-social-github"></i></a>
+			</div>
 		</div>
 	</footer>
 
