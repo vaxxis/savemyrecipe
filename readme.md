@@ -1,7 +1,6 @@
 # SaveMyRecipe
 
 A simple Laravel 5 Exercize.
-Demo application available at [http://savemyrecipe.vassi.it](http://savemyrecipe.vassi.it)
 
 ## Installation
 
